@@ -669,6 +669,15 @@
   const trail = [];
   let points = [];
   let treeIndices = [];
+  let riverIndices = [];
+  let streamPaths = [];
+  let lilyPads = [];
+  let logs = [];
+  let tidePools = [];
+  let signIndices = [];
+  let rockIndices = [];
+  let meadowIndices = [];
+
 
   function resize() {
     width = canvas.width = document.documentElement.scrollWidth;
@@ -689,9 +698,52 @@
       }
     }
     treeIndices = [];
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 250; i++) {
       treeIndices.push(Math.floor(Math.random() * points.length));
     }
+
+    riverIndices = [];
+    for (let y = 0; y < rows; y++) {
+      const colOffset = Math.floor(Math.sin(y / 3) * 2);
+      const col = Math.floor(cols / 2) + colOffset;
+      riverIndices.push(y * cols + Math.min(Math.max(col, 0), cols - 1));
+    }
+
+    streamPaths = [];
+    for (let i = 1; i < 3; i++) {
+      const path = [];
+      for (let s = 0; s < 8; s++) {
+        const row = i * Math.floor(rows / 3) + s;
+        const col = Math.floor(cols / 2) + 2 + Math.floor(Math.sin(s / 2) * 2);
+        if (row < rows && col < cols) path.push(row * cols + col);
+      }
+      streamPaths.push(path);
+    }
+
+    lilyPads = [];
+    riverIndices.forEach((idx) => {
+      if (Math.random() < 0.15) lilyPads.push(idx);
+    });
+
+    logs = [];
+    for (let i = 0; i < 8; i++) {
+      const idx = riverIndices[Math.floor(Math.random() * riverIndices.length)];
+      logs.push({ idx, angle: (Math.random() - 0.5) * Math.PI });
+    }
+
+    tidePools = [];
+    for (let i = 0; i < 6; i++) {
+      tidePools.push(riverIndices[Math.floor(Math.random() * riverIndices.length)]);
+    }
+
+    const trailRows = [Math.floor(rows / 3), Math.floor(rows / 3 * 2)];
+    signIndices = trailRows.map((r) => r * cols + Math.floor(Math.random() * cols));
+
+    rockIndices = [];
+    for (let i = 0; i < 40; i++) rockIndices.push(Math.floor(Math.random() * points.length));
+
+    meadowIndices = [];
+    for (let i = 0; i < 8; i++) meadowIndices.push(Math.floor(Math.random() * points.length));
   }
   window.addEventListener('load', resize);
   window.addEventListener('resize', resize);
@@ -727,46 +779,168 @@
   function draw() {
     ctx.clearRect(0, 0, width, height);
 
-    // land background
-    ctx.fillStyle = '#a9d18e';
+    // textured land background
+    const grad = ctx.createLinearGradient(0, 0, 0, height);
+    grad.addColorStop(0, '#f7f2d0');
+    grad.addColorStop(1, '#efe3c0');
+    ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
     const trailRows = [Math.floor(rows / 3), Math.floor(rows / 3 * 2)];
-    const riverCol = Math.floor(cols / 2);
 
-    ctx.lineWidth = 3;
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        const idx = y * cols + x;
+    // meadows
+    ctx.fillStyle = '#cde8b2';
+    meadowIndices.forEach((idx) => {
+      const p = points[idx];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 40, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // rivers
+    ctx.strokeStyle = '#63b3ed';
+    ctx.lineCap = 'round';
+    ctx.setLineDash([]);
+    for (let i = 0; i < riverIndices.length - 1; i++) {
+      const p = points[riverIndices[i]];
+      const p2 = points[riverIndices[i + 1]];
+      ctx.lineWidth = 8 + Math.sin(i * 0.5) * 2; // vary width
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    }
+
+    // streams
+    streamPaths.forEach((path, pi) => {
+      for (let i = 0; i < path.length - 1; i++) {
+        const p = points[path[i]];
+        const p2 = points[path[i + 1]];
+        ctx.lineWidth = 4 + Math.sin((pi + i) * 0.5) * 1; // vary width
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    });
+
+    // sandy trails
+    ctx.strokeStyle = '#b58f6b';
+    ctx.setLineDash([10, 6]);
+    for (const row of trailRows) {
+      for (let x = 0; x < cols - 1; x++) {
+        const idx = row * cols + x;
         const p = points[idx];
-        if (x < cols - 1 && trailRows.includes(y)) {
-          const p2 = points[idx + 1];
-          ctx.strokeStyle = '#8b4513';
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
-        if (y < rows - 1 && x === riverCol) {
-          const p2 = points[idx + cols];
-          ctx.strokeStyle = '#4a90e2';
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
+        const p2 = points[idx + 1];
+        ctx.lineWidth = 3 + Math.sin((row + x) * 0.3) * 1; // vary width
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    }
+    ctx.setLineDash([]);
+
+    // footprints
+    ctx.fillStyle = '#b58f6b';
+    for (const row of trailRows) {
+      for (let x = 0; x < cols - 1; x += 3) {
+        const p = points[row * cols + x];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    // draw trees
-    ctx.fillStyle = '#376f33';
-    for (const idx of treeIndices) {
+    // lily pads
+    ctx.fillStyle = '#6aaa3b';
+    lilyPads.forEach((idx) => {
       const p = points[idx];
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
       ctx.fill();
+      ctx.fillStyle = '#4c7a27';
+      ctx.beginPath();
+      ctx.arc(p.x + 2, p.y + 1, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#6aaa3b';
+    });
+
+    // tide pools
+    ctx.fillStyle = '#9bd8ff';
+    tidePools.forEach((idx) => {
+      const p = points[idx];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // logs
+    ctx.strokeStyle = '#8b5a2b';
+    ctx.lineWidth = 4;
+    logs.forEach((log) => {
+      const p = points[log.idx];
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(log.angle);
+      ctx.beginPath();
+      ctx.moveTo(-10, 0);
+      ctx.lineTo(10, 0);
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    // rocks
+    ctx.fillStyle = '#919191';
+    rockIndices.forEach((idx) => {
+      const p = points[idx];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // signs
+    ctx.fillStyle = '#b88a54';
+    signIndices.forEach((idx) => {
+      const p = points[idx];
+      ctx.fillRect(p.x - 2, p.y - 12, 4, 12);
+      ctx.fillRect(p.x - 8, p.y - 18, 16, 6);
+    });
+
+    // trees
+    ctx.fillStyle = '#376f33';
+    treeIndices.forEach((idx) => {
+      const p = points[idx];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // corner turtles
+    function doodleTurtle(x, y, scale) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale, scale);
+      ctx.fillStyle = '#68a23f';
+      ctx.beginPath();
+      ctx.arc(0, 0, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#89c35c';
+      ctx.beginPath();
+      ctx.arc(0, 0, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(14, -6, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
     }
 
+    doodleTurtle(40, 40, 0.7);
+    doodleTurtle(width - 40, 40, 0.7);
+    doodleTurtle(40, height - 40, 0.7);
+    doodleTurtle(width - 40, height - 40, 0.7);
+    
     // cursor trail remains
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
