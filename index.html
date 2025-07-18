@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <title>Shellbnb</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
       :root {
@@ -210,35 +211,129 @@
   </div>
 </section>
 <section class="flex flex-col gap-6">
-<h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Happy Turtles</h2>
-<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-<div class="relative rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
-<div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
-<div class="relative z-10 flex flex-col gap-4">
-<p class="text-stone-600">"I loved my stay at the Sunny Rock Ledge! The view was amazing, and it was so peaceful. A perfect spot to warm my shell."</p>
-<div class="flex items-center gap-3">
-<img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3A18vGiv2Q27bgoGt3dxaBUWYhvmzmHyGU9RPIRy5CUrf6g9kRWRG5cu3kw4yNoXY9SeAiUsSB9_N3_tFyLxgX-HdHXSlSJph_uDq8tgjbImsK7cu8GXWWmUEb_LKsd7upovqparc1DGfF-aovs1JPKTXYtcln5Ll2OD44fsbHgF3vHfOCSSdv1UjLzTpxL-oDEyrhuStxjL3KcMoO2_Sp2hV0i7icXu8M8p42j42vxUkoQEYeVM7LDgFjwwYZPL-tQlIiLLR7Ac"/>
-<div>
-<p class="font-bold text-stone-800">Shelly T.</p>
-<p class="text-sm text-stone-500">Sea Turtle</p>
-</div>
-</div>
-</div>
-</div>
-<div class="relative rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
-<div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
-<div class="relative z-10 flex flex-col gap-4">
-<p class="text-stone-600">"The Shaded Log Retreat was perfect for a relaxing getaway. Cool, comfy, and away from the hustle. Highly recommend!"</p>
-<div class="flex items-center gap-3">
-<img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKVVyDdkD1ebFuMYKwPBKEA_EvfBsZ93IHl_uK7YLCvTiwYCjcDRqrpNQ2Heiak5ALsq1th1g6X38agwCzqOEtnooaHK7ciqzqUUN3QEllQ55KgG91fJiy95vtlUUj5oBts7iR1HYQeOk33bwPAyAsIDnpAGQEaEwa8IAwSbUH50pMTE34uCpwzNjcDtOXyVKQkoKE92lauoK3qX4u6dz12y39bm9Qv2D3CA_9AKt1skbHd8J-pJro5OE2J0DHgOZvyQNLlS_jd5I"/>
-<div>
-<p class="font-bold text-stone-800">Leonardo the Loggerhead</p>
-<p class="text-sm text-stone-500">Loggerhead Turtle</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <h2 class="mx-auto flex items-center justify-center gap-2 text-center text-2xl font-bold leading-tight tracking-tight text-stone-800">
+    <span class="text-xl">🐢</span>
+    Happy Turtles
+  </h2>
+  <div class="relative left-1/2 w-screen -translate-x-1/2 bg-stone-50 py-8 px-4 sm:px-10">
+    <div class="testimonials-carousel swiper mx-auto max-w-[960px]">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"I loved my stay at the Sunny Rock Ledge! The view was amazing, and it was so peaceful. A perfect spot to warm my shell."</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3A18vGiv2Q27bgoGt3dxaBUWYhvmzmHyGU9RPIRy5CUrf6g9kRWRG5cu3kw4yNoXY9SeAiUsSB9_N3_tFyLxgX-HdHXSlSJph_uDq8tgjbImsK7cu8GXWWmUEb_LKsd7upovqparc1DGfF-aovs1JPKTXYtcln5Ll2OD44fsbHgF3vHfOCSSdv1UjLzTpxL-oDEyrhuStxjL3KcMoO2_Sp2hV0i7icXu8M8p42j42vxUkoQEYeVM7LDgFjwwYZPL-tQlIiLLR7Ac"/>
+                <div>
+                  <p class="font-bold text-stone-800">Shelly T.</p>
+                  <p class="text-sm text-stone-500">Sea Turtle</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"The Shaded Log Retreat was perfect for a relaxing getaway. Cool, comfy, and away from the hustle. Highly recommend!"</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKVVyDdkD1ebFuMYKwPBKEA_EvfBsZ93IHl_uK7YLCvTiwYCjcDRqrpNQ2Heiak5ALsq1th1g6X38agwCzqOEtnooaHK7ciqzqUUN3QEllQ55KgG91fJiy95vtlUUj5oBts7iR1HYQeOk33bwPAyAsIDnpAGQEaEwa8IAwSbUH50pMTE34uCpwzNjcDtOXyVKQkoKE92lauoK3qX4u6dz12y39bm9Qv2D3CA_9AKt1skbHd8J-pJro5OE2J0DHgOZvyQNLlS_jd5I"/>
+                <div>
+                  <p class="font-bold text-stone-800">Leonardo the Loggerhead</p>
+                  <p class="text-sm text-stone-500">Loggerhead Turtle</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"My pond-side stay was splendid! Plenty of lily pads and a calm atmosphere."</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPVBrfzjG4UEqWMp9mEMT6eOSi-6zTH_Jxq4Mdx-VWqOx6Q0PX4M5KDGmsTdG9iIyRrRZPxOtB1jVJ5Hk7CgB-xA"/>
+                <div>
+                  <p class="font-bold text-stone-800">Myrtle</p>
+                  <p class="text-sm text-stone-500">Pond Turtle</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"Cozy under-shell experience! Will definitely come back during my next migration."</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzOD20l9X1T3DFdGq_mR1nRtZeAJVMNNfdUHzWlDSPNqpOqZvDInxwJb9zz7Nnyw4qwS3Ng1Yw6PsPXOfcPCv2Po"/>
+                <div>
+                  <p class="font-bold text-stone-800">Raphael</p>
+                  <p class="text-sm text-stone-500">Green Turtle</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"Loved the Coral Cove! Great neighbors and plenty of sun."</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1528821154947-1aa3d1d40e40?auto=format&fit=crop&w=64&q=80"/>
+                <div>
+                  <p class="font-bold text-stone-800">Donatello</p>
+                  <p class="text-sm text-stone-500">Hawksbill</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"The ocean breeze at Shell Shore was perfect for my yoga sessions."</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1533569724892-8b97c93fa631?auto=format&fit=crop&w=64&q=80"/>
+                <div>
+                  <p class="font-bold text-stone-800">April O.</p>
+                  <p class="text-sm text-stone-500">Olive Ridley</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="text-stone-600">"Great service and clean sand at the Beach Hut. I'll be back!"</p>
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=64&q=80"/>
+                <div>
+                  <p class="font-bold text-stone-800">Michelangelo</p>
+                  <p class="text-sm text-stone-500">Sea Turtle</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide flex items-center justify-center">
+          <div class="relative max-w-sm flex flex-col items-center gap-4 rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <p class="font-bold text-stone-800">Write your own testimonial</p>
+            <button class="rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white hover:bg-[var(--primary-600)]">Share Experience</button>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
 </section>
 <footer class="rounded-2xl bg-stone-800 p-10 text-center text-white">
 <div class="flex flex-col items-center gap-4">
@@ -369,7 +464,28 @@
 
 <script>
   document.getElementById('nav-toggle').addEventListener('click', function () {
-    document.getElementById('nav-menu').classList.toggle('hidden');
+  document.getElementById('nav-menu').classList.toggle('hidden');
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  new Swiper('.testimonials-carousel', {
+    loop: true,
+    spaceBetween: 24,
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1280: { slidesPerView: 4 }
+    }
   });
 </script>
 </body></html>
