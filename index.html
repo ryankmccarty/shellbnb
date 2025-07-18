@@ -71,6 +71,7 @@
       .category-nav {
         display: flex;
         overflow-x: auto;
+        overflow-y: visible;
         gap: 2rem;
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
@@ -120,7 +121,7 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s;
-        z-index: 10;
+        z-index: 20;
       }
       .category-item:hover::after {
         opacity: 1;
@@ -188,10 +189,6 @@
     </select>
     <button aria-label="Search" class="h-12 w-12 rounded-full bg-green-500 text-white transition-transform hover:scale-105" type="submit">
       <span class="material-symbols-outlined">search</span>
-    </button>
-    <button aria-label="Filters" class="filters-button flex items-center gap-1 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm" type="button">
-      <span class="material-symbols-outlined">tune</span>
-      <span class="hidden sm:inline">Filters</span>
     </button>
   </form>
   <nav aria-label="Categories" class="mt-6 category-nav">
