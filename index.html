@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
 <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <title>Shellbnb</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
@@ -98,32 +99,48 @@
 <main class="flex flex-1 justify-center py-10 px-4 sm:px-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
 <section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
-  <h1 class="hero-title">Find Your Perfect Shell Away From Home</h1>
-  <p class="hero-subtitle">Whether you're migrating or just napping, discover your next cozy retreat.</p>
-  <form class="search-bar" action="#" method="get">
-    <input type="text" placeholder="Where" />
-    <input type="date" placeholder="Check in" />
-    <input type="date" placeholder="Check out" />
-    <select>
+  <h1 class="mt-8 text-center text-4xl font-bold text-black sm:mt-16 sm:text-6xl" style="font-family:'Inter',sans-serif">Find Your Perfect Shell Away From Home</h1>
+  <p class="mt-4 max-w-[650px] text-center text-lg text-stone-600 sm:text-xl" style="font-family:'Inter',sans-serif">Whether you're migrating or just napping, discover your next cozy retreat.</p>
+  <form class="search-bar mt-8 flex w-full max-w-[900px] flex-wrap items-center justify-between gap-3 rounded-full bg-white p-4 shadow" action="#" method="get">
+    <input aria-label="Where" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="text" placeholder="Search destinations" />
+    <input aria-label="Check In" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
+    <input aria-label="Check Out" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
+    <select aria-label="Guests" class="flex-1 rounded-full border border-stone-300 px-4 py-2">
+      <option>Add guests</option>
       <option>1 guest</option>
       <option>2 guests</option>
       <option>3 guests</option>
       <option>4 guests</option>
       <option>5+ guests</option>
     </select>
-    <button class="search-button" type="submit">
+    <button aria-label="Search" class="h-12 w-12 rounded-full bg-green-500 text-white transition-transform hover:scale-105" type="submit">
       <span class="material-symbols-outlined">search</span>
     </button>
+    <button aria-label="Filters" class="filters-button flex items-center gap-1 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm" type="button">
+      <span class="material-symbols-outlined">tune</span>
+      <span class="hidden sm:inline">Filters</span>
+    </button>
   </form>
-  <div class="flex w-full items-center">
-    <div class="categories flex-1">
-      <div class="category active"><div class="icon">🐚</div><div class="label">Reefs</div></div>
-      <div class="category"><div class="icon">🪵</div><div class="label">Logs</div></div>
-      <div class="category"><div class="icon">🪴</div><div class="label">Pads</div></div>
-      <div class="category"><div class="icon">🪨</div><div class="label">Caves</div></div>
+  <nav aria-label="Categories" class="mt-6 flex w-full items-center overflow-x-auto py-4">
+    <div class="categories mx-auto flex gap-8 sm:gap-12">
+      <button role="tab" aria-selected="true" class="category flex flex-col items-center gap-1 text-sm font-bold text-stone-800">
+        <span class="text-2xl">🐚</span>
+        <span>Reefs</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪵</span>
+        <span>Logs</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪴</span>
+        <span>Pads</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪨</span>
+        <span>Caves</span>
+      </button>
     </div>
-    <button class="filters-button" type="button">Filters</button>
-  </div>
+  </nav>
 </section>
 <section class="flex flex-col gap-6">
   <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Popular Shells Near You</h2>
