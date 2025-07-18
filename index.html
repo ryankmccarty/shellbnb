@@ -182,11 +182,11 @@
 <section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
   <h1 class="mt-8 text-center text-4xl font-bold text-black sm:mt-16 sm:text-6xl" style="font-family:'Inter',sans-serif">Find Your Perfect Shell Away From Home</h1>
   <p class="mt-4 max-w-[650px] text-center text-lg text-stone-600 sm:text-xl" style="font-family:'Inter',sans-serif">Whether you're migrating or just napping, discover your next cozy retreat.</p>
-  <form class="search-bar mt-8 flex w-full max-w-[900px] flex-wrap items-center justify-between gap-3 rounded-full bg-white p-4 shadow" action="#" method="get">
-    <input aria-label="Where" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="text" placeholder="Search destinations" />
-    <input aria-label="Check In" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
-    <input aria-label="Check Out" class="flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
-    <select aria-label="Guests" class="flex-1 rounded-full border border-stone-300 px-4 py-2">
+  <form class="search-bar mt-8 flex w-full max-w-[900px] flex-col sm:flex-row flex-wrap items-center justify-between gap-3 rounded-full bg-white p-4 shadow" action="#" method="get">
+    <input aria-label="Where" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="text" placeholder="Search destinations" />
+    <input aria-label="Check In" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
+    <input aria-label="Check Out" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
+    <select aria-label="Guests" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2">
       <option>Add guests</option>
       <option>1 guest</option>
       <option>2 guests</option>
@@ -194,7 +194,7 @@
       <option>4 guests</option>
       <option>5+ guests</option>
     </select>
-    <button aria-label="Search" class="h-12 w-12 rounded-full bg-green-500 text-white transition-transform hover:scale-105" type="submit">
+    <button aria-label="Search" class="h-12 w-full sm:w-12 rounded-full bg-green-500 text-white transition-transform hover:scale-105" type="submit">
       <span class="material-symbols-outlined">search</span>
     </button>
   </form>
