@@ -266,8 +266,8 @@
   let points = [];
 
   function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    width = canvas.width = document.documentElement.scrollWidth;
+    height = canvas.height = document.documentElement.scrollHeight;
     cols = Math.floor(width / spacing) + 1;
     rows = Math.floor(height / spacing) + 1;
     points = [];
