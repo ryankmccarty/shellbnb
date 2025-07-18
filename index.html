@@ -135,7 +135,7 @@
 <body class="bg-[#fcfdfb]">
 <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
 <canvas id="cursor-canvas" class="pointer-events-none absolute inset-0 -z-10"></canvas>
-<div id="mascot-container" class="pointer-events-auto absolute left-0 top-1/2 w-16 h-12" style="cursor:grab">
+<div id="mascot-container" class="pointer-events-auto absolute left-0 top-0 w-16 h-12" style="cursor:grab">
   <svg id="turtle" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" class="w-full h-full select-none">
     <ellipse cx="24" cy="16" rx="16" ry="12" fill="#68a23f"/>
     <ellipse cx="24" cy="16" rx="14" ry="10" fill="#89c35c"/>
@@ -816,8 +816,8 @@
       const turtle = document.getElementById('mascot-container');
       if (!turtle) return;
 
-      let x = -turtle.offsetWidth;
-      let y = window.innerHeight / 2;
+      let x = 100;
+      let y = 100;
       let dragging = false;
       let offX = 0;
       let offY = 0;
