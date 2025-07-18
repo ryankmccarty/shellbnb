@@ -54,30 +54,33 @@
 </nav>
 </div>
 </header>
+
+<!-- Hero Section -->
+<section class="relative flex h-screen w-full items-center justify-end bg-cover bg-center bg-no-repeat" style='background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");'>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/60"></div>
+  <div class="relative z-10 flex h-full w-full flex-col items-center justify-end gap-6 pb-20 text-center">
+    <div class="flex flex-col gap-4 px-4">
+      <h1 class="text-3xl font-black leading-tight tracking-tighter text-white drop-shadow" style="text-shadow:0 1px 3px rgba(0,0,0,0.3)">Find Your Perfect Shell Away From Home</h1>
+      <h2 class="text-base font-normal leading-normal text-white drop-shadow sm:text-lg" style="text-shadow:0 1px 3px rgba(0,0,0,0.3)">Whether you're migrating or just napping, discover your next cozy retreat.</h2>
+    </div>
+    <form class="mx-auto flex w-11/12 max-w-2xl flex-col items-center gap-2 rounded-full bg-white p-2 shadow-lg sm:flex-row">
+      <input class="form-input flex-1 rounded-full border-none px-4 text-stone-800 focus:ring-0" placeholder="Search destinations" type="text"/>
+      <select class="form-select rounded-full border-none px-4 text-stone-500 focus:ring-0">
+        <option>Beach</option>
+        <option>Pond</option>
+        <option>Reef</option>
+      </select>
+      <button class="flex items-center justify-center gap-1 rounded-full bg-[#1FAA59] px-6 py-3 font-semibold text-white hover:bg-[#178946]" type="submit">
+        <span class="material-symbols-outlined">search</span>
+        <span class="hidden sm:inline">Search</span>
+        <span class="sm:hidden">🐢</span>
+      </button>
+    </form>
+  </div>
+</section>
+
 <main class="flex flex-1 justify-center py-10 px-4 sm:px-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
-<section class="relative flex min-h-[480px] flex-col items-center justify-center gap-8 rounded-2xl bg-cover bg-center bg-no-repeat p-8 text-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");'>
-<div class="flex flex-col gap-4">
-<h1 class="text-white text-3xl sm:text-5xl font-black leading-tight tracking-tighter">Find Your Perfect Shell Away From Home</h1>
-<h2 class="text-white text-base sm:text-lg font-normal leading-normal">Whether you're migrating or just napping, discover your next cozy retreat.</h2>
-</div>
-<form class="flex w-full max-w-xl flex-col items-center gap-4 rounded-full bg-white/20 p-2 backdrop-blur-sm sm:flex-row">
-<div class="flex h-14 w-full flex-1 items-center rounded-full bg-white px-5 shadow-md">
-<input class="form-input w-full flex-1 border-none bg-transparent text-stone-800 placeholder:text-stone-500 focus:ring-0" placeholder="Search destinations" type="text"/>
-<div class="h-6 border-l border-stone-200"></div>
-<select class="form-select border-none bg-transparent text-stone-500 focus:ring-0">
-<option>Beach</option>
-<option>Pond</option>
-<option>Forest</option>
-<option>Desert</option>
-</select>
-</div>
-<button class="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary-500)] px-8 text-white hover:bg-[var(--primary-600)] sm:w-auto" type="submit">
-<span class="material-symbols-outlined"> search </span>
-<span class="font-semibold">Search</span>
-</button>
-</form>
-</section>
 <section class="flex flex-col gap-6">
 <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Featured Listings</h2>
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
