@@ -39,6 +39,81 @@
         color: red;
         transform: scale(1.2);
       }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: #555;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-radius: 9999px;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .search-bar input,
+      .search-bar select {
+        border: none;
+        outline: none;
+        margin: 0 1rem;
+        font-size: 1rem;
+      }
+      .search-button {
+        background-color: #27C03C;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .categories {
+        display: flex;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 1rem 2rem;
+        margin-top: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+      .category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.9rem;
+        cursor: pointer;
+        color: #555;
+      }
+      .category .icon {
+        font-size: 1.5rem;
+      }
+      .category.active {
+        color: black;
+        font-weight: 600;
+        border-bottom: 2px solid black;
+      }
+      .filters-button {
+        margin-left: auto;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        border: 1px solid #ddd;
+        background: white;
+        cursor: pointer;
+      }
     </style>
 </head>
 <body class="bg-[#fcfdfb]">
@@ -69,25 +144,32 @@
 </header>
 <main class="flex flex-1 justify-center py-10 px-4 sm:px-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
-<section class="relative z-10 mx-auto flex h-[160px] w-full max-w-screen-lg flex-col items-center justify-start gap-4 rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
-  <form class="flex w-full items-center gap-4 rounded-full bg-white px-4 py-2 shadow-md sm:gap-6">
-    <input class="form-input flex-1 border-none bg-transparent placeholder:text-stone-500 focus:ring-0" placeholder="Search destinations" type="text"/>
-    <select class="form-select border-none bg-transparent text-stone-500 focus:ring-0">
-      <option>Beach</option>
-      <option>Pond</option>
-      <option>Reef</option>
-      <option>Log</option>
+<section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
+  <h1 class="hero-title">Find Your Perfect Shell Away From Home</h1>
+  <p class="hero-subtitle">Whether you're migrating or just napping, discover your next cozy retreat.</p>
+  <form class="search-bar" action="#" method="get">
+    <input type="text" placeholder="Where" />
+    <input type="date" placeholder="Check in" />
+    <input type="date" placeholder="Check out" />
+    <select>
+      <option>1 guest</option>
+      <option>2 guests</option>
+      <option>3 guests</option>
+      <option>4 guests</option>
+      <option>5+ guests</option>
     </select>
-    <button class="flex items-center justify-center rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white" type="submit">
+    <button class="search-button" type="submit">
       <span class="material-symbols-outlined">search</span>
     </button>
   </form>
-  <div class="flex w-full max-w-full items-center gap-6 overflow-x-auto border-t border-stone-200 pt-4 text-sm">
-    <a class="flex min-w-fit flex-col items-center gap-1 text-stone-600 hover:text-stone-900" href="#"><span class="text-xl">🐚</span><span>Shells</span></a>
-    <a class="flex min-w-fit flex-col items-center gap-1 text-stone-600 hover:text-stone-900" href="#"><span class="text-xl">🪵</span><span>Logs</span></a>
-    <a class="flex min-w-fit flex-col items-center gap-1 text-stone-600 hover:text-stone-900" href="#"><span class="text-xl">🌊</span><span>Reefs</span></a>
-    <a class="flex min-w-fit flex-col items-center gap-1 text-stone-600 hover:text-stone-900" href="#"><span class="text-xl">🪴</span><span>Nests</span></a>
-    <a class="flex min-w-fit flex-col items-center gap-1 text-stone-600 hover:text-stone-900" href="#"><span class="text-xl">🐢</span><span>Top Hosts</span></a>
+  <div class="flex w-full items-center">
+    <div class="categories flex-1">
+      <div class="category active"><div class="icon">🐚</div><div class="label">Reefs</div></div>
+      <div class="category"><div class="icon">🪵</div><div class="label">Logs</div></div>
+      <div class="category"><div class="icon">🪴</div><div class="label">Pads</div></div>
+      <div class="category"><div class="icon">🪨</div><div class="label">Caves</div></div>
+    </div>
+    <button class="filters-button" type="button">Filters</button>
   </div>
 </section>
 <section class="flex flex-col gap-6">
