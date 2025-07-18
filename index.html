@@ -783,12 +783,12 @@
 
     // rivers
     ctx.strokeStyle = '#63b3ed';
-    ctx.lineWidth = 6;
     ctx.lineCap = 'round';
     ctx.setLineDash([]);
     for (let i = 0; i < riverIndices.length - 1; i++) {
       const p = points[riverIndices[i]];
       const p2 = points[riverIndices[i + 1]];
+      ctx.lineWidth = 8 + Math.sin(i * 0.5) * 2; // vary width
       ctx.beginPath();
       ctx.moveTo(p.x, p.y);
       ctx.lineTo(p2.x, p2.y);
@@ -796,11 +796,11 @@
     }
 
     // streams
-    ctx.lineWidth = 3;
-    streamPaths.forEach((path) => {
+    streamPaths.forEach((path, pi) => {
       for (let i = 0; i < path.length - 1; i++) {
         const p = points[path[i]];
         const p2 = points[path[i + 1]];
+        ctx.lineWidth = 4 + Math.sin((pi + i) * 0.5) * 1; // vary width
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p2.x, p2.y);
@@ -810,13 +810,13 @@
 
     // sandy trails
     ctx.strokeStyle = '#b58f6b';
-    ctx.lineWidth = 2;
     ctx.setLineDash([10, 6]);
     for (const row of trailRows) {
       for (let x = 0; x < cols - 1; x++) {
         const idx = row * cols + x;
         const p = points[idx];
         const p2 = points[idx + 1];
+        ctx.lineWidth = 3 + Math.sin((row + x) * 0.3) * 1; // vary width
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p2.x, p2.y);
