@@ -706,38 +706,28 @@
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-
-    // draw land background
-    ctx.fillStyle = '#b5d99c';
-    ctx.fillRect(0, 0, width, height);
-
-    // draw simple vertical river
-    ctx.strokeStyle = '#7ec8e3';
-    ctx.lineWidth = 8;
-    ctx.beginPath();
-    for (let y = -40; y < height + 40; y += 40) {
-      const x = width / 2 + Math.sin(y * 0.01) * 100;
-      if (y === -40) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
+    ctx.strokeStyle = 'rgba(200,0,0,0.5)';
+    ctx.lineWidth = 1;
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const idx = y * cols + x;
+        const p = points[idx];
+        if (x < cols - 1) {
+          const p2 = points[idx + 1];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+        if (y < rows - 1) {
+          const p2 = points[idx + cols];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
       }
     }
-    ctx.stroke();
-
-    // draw a branching river
-    ctx.beginPath();
-    for (let x = -40; x < width + 40; x += 40) {
-      const y = height * 0.6 + Math.sin(x * 0.015) * 30;
-      if (x === -40) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-    }
-    ctx.stroke();
-
-    // cursor trail
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     for (let i = 1; i < trail.length; i++) {
