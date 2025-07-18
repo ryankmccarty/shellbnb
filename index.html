@@ -30,63 +30,6 @@
       .custom-nav {
         @apply absolute top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow text-stone-600 hover:bg-stone-50;
       }
-      .category-nav {
-        display: flex;
-        overflow-x: auto;
-        gap: 2rem;
-        padding: 1rem 0;
-        border-bottom: 1px solid #eee;
-        scroll-snap-type: x mandatory;
-      }
-      .category-item {
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-        text-align: center;
-        color: #555;
-        font-size: 0.9rem;
-        cursor: pointer;
-        position: relative;
-        transition: color 0.2s ease;
-      }
-      .category-item img {
-        height: 26px;
-        margin-bottom: 6px;
-      }
-      .category-item:hover {
-        color: #000;
-      }
-      .category-item.active {
-        color: #000;
-        font-weight: 600;
-      }
-      .category-item.active::after {
-        content: '';
-        display: block;
-        margin: 4px auto 0;
-        height: 2px;
-        width: 100%;
-        background: #000;
-      }
-      .category-item::after {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0,0,0,0.8);
-        color: white;
-        font-size: 0.75rem;
-        padding: 6px 10px;
-        border-radius: 6px;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s;
-        z-index: 10;
-      }
-      .category-item:hover::after {
-        opacity: 1;
-      }
     </style>
 </head>
 <body class="bg-[#fcfdfb]">
@@ -140,47 +83,25 @@
       <span class="hidden sm:inline">Filters</span>
     </button>
   </form>
-  <nav aria-label="Categories" class="mt-6 category-nav">
-    <button type="button" class="category-item active" data-tooltip="Colorful underwater reefs perfect for group lounging.">
-      <span class="text-2xl">🪸</span>
-      <span>Reefs</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Natural log hideaways—great for introverted shell-dwellers.">
-      <span class="text-2xl">🪵</span>
-      <span>Logs</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Soft leafy pads nestled near calm waters.">
-      <span class="text-2xl">🪴</span>
-      <span>Pads</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Cozy, cool rock formations for shade-loving turtles.">
-      <span class="text-2xl">🪨</span>
-      <span>Caves</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Flat sunny areas perfect for basking.">
-      <span class="text-2xl">☀️</span>
-      <span>Sun Spots</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Shallow, splashy nooks teeming with curiosity.">
-      <span class="text-2xl">🌊</span>
-      <span>Tidal Pools</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Root-woven sanctuaries offering peace and quiet.">
-      <span class="text-2xl">🌱</span>
-      <span>Mangroves</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Open sandy spots ideal for nesting or resting.">
-      <span class="text-2xl">🏖️</span>
-      <span>Sand Banks</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="Rustic floating homes with a view.">
-      <span class="text-2xl">🐚</span>
-      <span>Driftwood</span>
-    </button>
-    <button type="button" class="category-item" data-tooltip="High-density reefs for the social swimmer.">
-      <span class="text-2xl">🐢</span>
-      <span>Shell Cities</span>
-    </button>
+  <nav aria-label="Categories" class="mt-6 flex w-full items-center overflow-x-auto py-4">
+    <div class="categories mx-auto flex gap-8 sm:gap-12">
+      <button role="tab" aria-selected="true" class="category flex flex-col items-center gap-1 text-sm font-bold text-stone-800">
+        <span class="text-2xl">🐚</span>
+        <span>Reefs</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪵</span>
+        <span>Logs</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪴</span>
+        <span>Pads</span>
+      </button>
+      <button role="tab" aria-selected="false" class="category flex flex-col items-center gap-1 text-sm text-stone-600 hover:text-stone-800">
+        <span class="text-2xl">🪨</span>
+        <span>Caves</span>
+      </button>
+    </div>
   </nav>
 </section>
 <section class="flex flex-col gap-6">
@@ -672,14 +593,6 @@
 <script>
   document.getElementById('nav-toggle').addEventListener('click', function () {
   document.getElementById('nav-menu').classList.toggle('hidden');
-  });
-</script>
-<script>
-  document.querySelectorAll('.category-item').forEach((item) => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.category-item').forEach((el) => el.classList.remove('active'));
-      item.classList.add('active');
-    });
   });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
