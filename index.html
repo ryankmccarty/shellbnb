@@ -130,6 +130,13 @@
         z-index: 30;
         transition: transform 0.1s linear;
       }
+      .postcard { transition: transform 0.3s, box-shadow 0.3s; }
+      .postcard:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+      .location-stamp { position:absolute; top:0.5rem; right:0.5rem; background:#dffce3; color:#216315; padding:2px 6px; border-radius:4px; font-size:0.75rem; }
+      .shell-rating span { display:inline-block; margin-right:2px; }
+      .postcard:hover .shell-rating span { animation:wobble 0.6s ease-in-out; }
+      @keyframes wobble {0%,100%{transform:rotate(0);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);} }
+
     </style>
 </head>
 <body class="bg-[#fcfdfb]">
@@ -461,18 +468,20 @@
 </section>
 <section class="flex flex-col gap-6">
   <h2 class="mx-auto flex items-center justify-center gap-2 text-center text-2xl font-bold leading-tight tracking-tight text-stone-800">
-    <span class="text-xl">🐢</span>
-    Happy Turtles
+    <span class="text-xl">🐚</span>
+    Shell Mail from Happy Travelers
   </h2>
+  <p class="mx-auto -mt-2 max-w-[600px] text-center text-stone-600">Tales from turtles who found their perfect retreat.</p>
   <div class="relative left-1/2 w-screen -translate-x-1/2 bg-stone-50 py-8 px-4 sm:px-10">
     <div class="testimonials-carousel swiper mx-auto max-w-[960px]">
       <div class="swiper-wrapper">
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="location-stamp">📍 Stayed at: Sunny Rock Ledge</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;I loved my stay at the Sunny Rock Ledge! The view was amazing, and it was so peaceful. A perfect spot to warm my shell.&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3A18vGiv2Q27bgoGt3dxaBUWYhvmzmHyGU9RPIRy5CUrf6g9kRWRG5cu3kw4yNoXY9SeAiUsSB9_N3_tFyLxgX-HdHXSlSJph_uDq8tgjbImsK7cu8GXWWmUEb_LKsd7upovqparc1DGfF-aovs1JPKTXYtcln5Ll2OD44fsbHgF3vHfOCSSdv1UjLzTpxL-oDEyrhuStxjL3KcMoO2_Sp2hV0i7icXu8M8p42j42vxUkoQEYeVM7LDgFjwwYZPL-tQlIiLLR7Ac"/>
                 <div>
@@ -484,11 +493,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="location-stamp">📍 Stayed at: Shaded Log Retreat</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;The Shaded Log Retreat was perfect for a relaxing getaway. Cool, comfy, and away from the hustle. Highly recommend!&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKVVyDdkD1ebFuMYKwPBKEA_EvfBsZ93IHl_uK7YLCvTiwYCjcDRqrpNQ2Heiak5ALsq1th1g6X38agwCzqOEtnooaHK7ciqzqUUN3QEllQ55KgG91fJiy95vtlUUj5oBts7iR1HYQeOk33bwPAyAsIDnpAGQEaEwa8IAwSbUH50pMTE34uCpwzNjcDtOXyVKQkoKE92lauoK3qX4u6dz12y39bm9Qv2D3CA_9AKt1skbHd8J-pJro5OE2J0DHgOZvyQNLlS_jd5I"/>
                 <div>
@@ -500,11 +510,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="location-stamp">📍 Stayed at: Lily Pad Lagoon</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;My pond-side stay was splendid! Plenty of lily pads and a calm atmosphere. I’ve never slept so well.&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPVBrfzjG4UEqWMp9mEMT6eOSi-6zTH_Jxq4Mdx-VWqOx6Q0PX4M5KDGmsTdG9iIyRrRZPxOtB1jVJ5Hk7CgB-xA"/>
                 <div>
@@ -516,11 +527,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="location-stamp">📍 Stayed at: Under-Shell Retreat</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;Cozy under-shell experience! Will definitely come back during my next migration.&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzOD20l9X1T3DFdGq_mR1nRtZeAJVMNNfdUHzWlDSPNqpOqZvDInxwJb9zz7Nnyw4qwS3Ng1Yw6PsPXOfcPCv2Po"/>
                 <div>
@@ -532,11 +544,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="location-stamp">📍 Stayed at: Coral Cove Hideaway</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;Coral Cove Hideaway was totally chill. Awesome currents, sweet coral, and good vibes all around.&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1528821154947-1aa3d1d40e40?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -548,11 +561,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div class="location-stamp">📍 Stayed at: Shell Shore</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;The ocean breeze at Shell Shore was perfect for my yoga sessions.&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1533569724892-8b97c93fa631?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -564,11 +578,12 @@
           </div>
         </div>
         <div class="swiper-slide flex justify-center">
-          <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="postcard relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div class="location-stamp">📍 Stayed at: Beach Hut</div>
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
               <p class="italic text-stone-600">&ldquo;Great service and clean sand at the Beach Hut. I'll be back!&rdquo;</p>
-              <div class="text-lg">🐚🐚🐚🐚🐚</div>
+              <div class="shell-rating text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -582,7 +597,7 @@
         <div class="swiper-slide flex items-center justify-center">
           <div class="relative max-w-sm flex flex-col items-center gap-4 rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <p class="font-bold text-stone-800">Had a cozy stay? Share your shell story!</p>
-            <button class="rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white hover:bg-[var(--primary-600)]">Write a Testimonial</button>
+            <button class="rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white hover:bg-[var(--primary-600)]">Write Your Shell Mail</button>
           </div>
         </div>
       </div>
