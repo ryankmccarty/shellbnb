@@ -125,6 +125,47 @@
       .category-item:hover::after {
         opacity: 1;
       }
+      .how-it-works {
+        background: linear-gradient(to bottom, #e0f7fa, #ffffff 60%);
+        position: relative;
+        overflow: hidden;
+      }
+      .how-it-works .step {
+        transition: transform 0.2s;
+      }
+      .how-it-works .step-icon:hover {
+        animation: wiggle 0.4s;
+      }
+      .slide-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .slide-up.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .turtle-trail {
+        position: absolute;
+        top: 60%;
+        left: -40px;
+        width: 40px;
+        pointer-events: none;
+        opacity: 0;
+      }
+      .animate-trail .turtle-trail {
+        animation: trail 3s forwards;
+        opacity: 1;
+      }
+      @keyframes trail {
+        from { left: -40px; }
+        to { left: calc(100% - 40px); }
+      }
+      @keyframes wiggle {
+        0%,100% { transform: rotate(0deg); }
+        25% { transform: rotate(-6deg); }
+        75% { transform: rotate(6deg); }
+      }
     </style>
 </head>
 <body class="bg-[#fcfdfb]">
@@ -317,32 +358,33 @@
     </a>
   </div>
 </section>
-<section class="flex flex-col gap-8 rounded-2xl bg-white p-6 sm:p-10 shadow-sm border border-stone-200">
-<h2 class="text-center text-stone-800 text-3xl font-bold leading-tight tracking-tight">How It Works</h2>
-<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
-<div class="flex flex-col items-center gap-4">
-<div class="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
-<img alt="Turtle looking through a spyglass" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwzS_1gPd1loQX-6QYcZM0tIOF0MoMVWtZpgEfiH9AqpOetLGMnGm9599EM2qaJBBbRp0f6LWBAiFfPY2Du9HzPuDu2Wx5cKbsS8qX30eqwWf3253hNSduQxW8vbh_5rherCRnOLnRLri6se5KwT1Sd3qJ_ZQKYF4hfc6yrvPh5QC7gIcv1mV2zyyRcBvbXRmqlEOMxRxc_rTzJfFRX_sKDmgT9Aau96f0trgJ5mq5zyMxZYIVQSkHGF4UTEpRhdh8pyh4iWs6aMY"/>
-</div>
-<h3 class="text-xl font-bold text-stone-800">1. Search</h3>
-<p class="text-stone-500">Find the perfect habitat by location and type.</p>
-</div>
-<div class="flex flex-col items-center gap-4">
-<div class="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
-<img alt="Turtle sliding into its shell" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmen806cxX_Vaeg0WhhN1vIwG2u3XyrWxoKhyS95BE2oHYdAbXaZKjBq-lxWj2iw8Fl-5MWX66n884IZkrqfwiQAFsrpylvuQ08C0LRPls1S-ROie0CPDytKEYcsQs_UNE19Lg9ka4VIt5vH3slJQMLy29PaORsgCDEx4JY2HzVNtz9dmB0iyDJNeBJj3W6WI29TkXplZUuEfvehKR8OqtTX7SqkGKPiOcjgIhlfZ1E8kKe69cG8Pjbz6zXfzVitmZaAaSy2Dt3aw"/>
-</div>
-<h3 class="text-xl font-bold text-stone-800">2. Slide In</h3>
-<p class="text-stone-500">Book your stay and get ready to relax.</p>
-</div>
-<div class="flex flex-col items-center gap-4">
-<div class="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
-<img alt="Happy turtle with a flower" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd8WTAm4M8GEfAiKsgS0dY6t5QgCp5I4oDrW7tbuzIdcM-CCgaU6srPNUVLIkzUBsNHcg_mpeeMkpZB4DVdj_5IWCQvr3KxkG6BTC8g2kfbcY8Mpsb253bdfwj8flJrzMuzdYln8x1CuKiU9g3_0-wLiTrs5qhENLBP3Tryy1MKBq3K2nJ1NXSeRjIoiSPYcBdr-m5_-PhWaag8vxYpU8O4e9xalaXC5r50M6bUJl6vrjsw-tasBvFMxfqkgww0bOPb96p7a9GO2U"/>
-</div>
-<h3 class="text-xl font-bold text-stone-800">3. Stay Happy</h3>
-<p class="text-stone-500">Enjoy your cozy retreat and leave a review.</p>
-</div>
-</div>
-</section>
+<section class="how-it-works flex flex-col gap-8 rounded-2xl bg-white p-6 sm:p-10 shadow-sm border border-stone-200">
+  <img class="turtle-trail" alt="" src="https://twemoji.maxcdn.com/v/latest/72x72/1f422.png" />
+  <h2 class="text-center text-stone-800 text-3xl font-bold leading-tight tracking-tight">How It Works</h2>
+  <div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
+    <div class="step slide-up flex flex-col items-center gap-4">
+      <div class="step-icon flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
+        <img alt="Turtle using a magnifying glass" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwzS_1gPd1loQX-6QYcZM0tIOF0MoMVWtZpgEfiH9AqpOetLGMnGm9599EM2qaJBBbRp0f6LWBAiFfPY2Du9HzPuDu2Wx5cKbsS8qX30eqwWf3253hNSduQxW8vbh_5rherCRnOLnRLri6se5KwT1Sd3qJ_ZQKYF4hfc6yrvPh5QC7gIcv1mV2zyyRcBvbXRmqlEOMxRxc_rTzJfFRX_sKDmgT9Aau96f0trgJ5mq5zyMxZYIVQSkHGF4UTEpRhdh8pyh4iWs6aMY"/>
+      </div>
+      <h3 class="text-xl font-bold text-stone-800">1. Scout Your Spot</h3>
+      <p class="text-stone-500">Find the perfect shell by location or vibe.</p>
+    </div>
+    <div class="step slide-up flex flex-col items-center gap-4">
+      <div class="step-icon flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
+        <img alt="Turtle sliding into its shell" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmen806cxX_Vaeg0WhhN1vIwG2u3XyrWxoKhyS95BE2oHYdAbXaZKjBq-lxWj2iw8Fl-5MWX66n884IZkrqfwiQAFsrpylvuQ08C0LRPls1S-ROie0CPDytKEYcsQs_UNE19Lg9ka4VIt5vH3slJQMLy29PaORsgCDEx4JY2HzVNtz9dmB0iyDJNeBJj3W6WI29TkXplZUuEfvehKR8OqtTX7SqkGKPiOcjgIhlfZ1E8kKe69cG8Pjbz6zXfzVitmZaAaSy2Dt3aw"/>
+      </div>
+      <h3 class="text-xl font-bold text-stone-800">2. Slide Into Comfort</h3>
+      <p class="text-stone-500">Book your stay and get your fins up.</p>
+    </div>
+    <div class="step slide-up flex flex-col items-center gap-4">
+      <div class="step-icon flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
+        <img alt="Happy turtle in a hammock" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd8WTAm4M8GEfAiKsgS0dY6t5QgCp5I4oDrW7tbuzIdcM-CCgaU6srPNUVLIkzUBsNHcg_mpeeMkpZB4DVdj_5IWCQvr3KxkG6BTC8g2kfbcY8Mpsb253bdfwj8flJrzMuzdYln8x1CuKiU9g3_0-wLiTrs5qhENLBP3Tryy1MKBq3K2nJ1NXSeRjIoiSPYcBdr-m5_-PhWaag8vxYpU8O4e9xalaXC5r50M6bUJl6vrjsw-tasBvFMxfqkgww0bOPb96p7a9GO2U"/>
+      </div>
+      <h3 class="text-xl font-bold text-stone-800">3. Shell Yeah!</h3>
+      <p class="text-stone-500">Enjoy, relax, and don’t forget to leave a ripple.</p>
+    </div>
+  </div>
+  </section>
 <section class="flex flex-col gap-6 rounded-2xl border border-stone-200 bg-white p-10 shadow-sm" id="faq">
   <h2 class="text-center text-3xl font-bold tracking-tight text-stone-800">FAQs</h2>
   <div class="mx-auto w-full max-w-md">
@@ -796,6 +838,23 @@
           btn.setAttribute('aria-label', 'Remove from favorites');
         }
       });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const section = document.querySelector('.how-it-works');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target === section) {
+              section.classList.add('animate-trail');
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
+      observer.observe(section);
     });
   </script>
   </body></html>
