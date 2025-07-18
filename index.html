@@ -668,6 +668,7 @@
   const mouse = { x: 0, y: 0 };
   const trail = [];
   let points = [];
+  let treeIndices = [];
 
   function resize() {
     width = canvas.width = document.documentElement.scrollWidth;
@@ -686,6 +687,10 @@
           vy: 0,
         });
       }
+    }
+    treeIndices = [];
+    for (let i = 0; i < 150; i++) {
+      treeIndices.push(Math.floor(Math.random() * points.length));
     }
   }
   window.addEventListener('load', resize);
@@ -721,21 +726,30 @@
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = 'rgba(200,0,0,0.5)';
-    ctx.lineWidth = 1;
+
+    // land background
+    ctx.fillStyle = '#a9d18e';
+    ctx.fillRect(0, 0, width, height);
+
+    const trailRows = [Math.floor(rows / 3), Math.floor(rows / 3 * 2)];
+    const riverCol = Math.floor(cols / 2);
+
+    ctx.lineWidth = 3;
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         const idx = y * cols + x;
         const p = points[idx];
-        if (x < cols - 1) {
+        if (x < cols - 1 && trailRows.includes(y)) {
           const p2 = points[idx + 1];
+          ctx.strokeStyle = '#8b4513';
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
           ctx.stroke();
         }
-        if (y < rows - 1) {
+        if (y < rows - 1 && x === riverCol) {
           const p2 = points[idx + cols];
+          ctx.strokeStyle = '#4a90e2';
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
@@ -743,6 +757,17 @@
         }
       }
     }
+
+    // draw trees
+    ctx.fillStyle = '#376f33';
+    for (const idx of treeIndices) {
+      const p = points[idx];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // cursor trail remains
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     for (let i = 1; i < trail.length; i++) {
