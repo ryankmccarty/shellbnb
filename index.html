@@ -73,7 +73,7 @@
 <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
 <canvas id="cursor-canvas" class="pointer-events-none absolute inset-0 -z-10"></canvas>
 <div class="layout-container flex h-full grow flex-col">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f2f4f0] px-10 py-4 shadow-sm">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f2f4f0] px-4 sm:px-10 py-4 shadow-sm">
 <div class="flex items-center gap-3 text-green-900">
 <svg class="h-8 w-8 text-[var(--primary-500)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z" fill="currentColor"></path>
@@ -97,27 +97,33 @@
 </header>
 <main class="flex flex-1 justify-center py-10 px-4 sm:px-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
-<section class="relative flex min-h-[480px] flex-col items-center justify-center gap-8 rounded-2xl bg-cover bg-center bg-no-repeat p-8 text-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");'>
-<div class="flex flex-col gap-4">
-<h1 class="text-white text-3xl sm:text-5xl font-black leading-tight tracking-tighter">Find Your Perfect Shell Away From Home</h1>
-<h2 class="text-white text-base sm:text-lg font-normal leading-normal">Whether you're migrating or just napping, discover your next cozy retreat.</h2>
-</div>
-<form class="flex w-full max-w-xl flex-col items-center gap-4 rounded-full bg-white/20 p-2 backdrop-blur-sm sm:flex-row">
-<div class="flex h-14 w-full flex-1 items-center rounded-full bg-white px-5 shadow-md">
-<input class="form-input w-full flex-1 border-none bg-transparent text-stone-800 placeholder:text-stone-500 focus:ring-0" placeholder="Search destinations" type="text"/>
-<div class="h-6 border-l border-stone-200"></div>
-<select class="form-select border-none bg-transparent text-stone-500 focus:ring-0">
-<option>Beach</option>
-<option>Pond</option>
-<option>Forest</option>
-<option>Desert</option>
-</select>
-</div>
-<button class="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary-500)] px-8 text-white hover:bg-[var(--primary-600)] sm:w-auto" type="submit">
-<span class="material-symbols-outlined"> search </span>
-<span class="font-semibold">Search</span>
-</button>
-</form>
+<section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
+  <h1 class="hero-title">Find Your Perfect Shell Away From Home</h1>
+  <p class="hero-subtitle">Whether you're migrating or just napping, discover your next cozy retreat.</p>
+  <form class="search-bar" action="#" method="get">
+    <input type="text" placeholder="Where" />
+    <input type="date" placeholder="Check in" />
+    <input type="date" placeholder="Check out" />
+    <select>
+      <option>1 guest</option>
+      <option>2 guests</option>
+      <option>3 guests</option>
+      <option>4 guests</option>
+      <option>5+ guests</option>
+    </select>
+    <button class="search-button" type="submit">
+      <span class="material-symbols-outlined">search</span>
+    </button>
+  </form>
+  <div class="flex w-full items-center">
+    <div class="categories flex-1">
+      <div class="category active"><div class="icon">🐚</div><div class="label">Reefs</div></div>
+      <div class="category"><div class="icon">🪵</div><div class="label">Logs</div></div>
+      <div class="category"><div class="icon">🪴</div><div class="label">Pads</div></div>
+      <div class="category"><div class="icon">🪨</div><div class="label">Caves</div></div>
+    </div>
+    <button class="filters-button" type="button">Filters</button>
+  </div>
 </section>
 <section class="flex flex-col gap-6">
   <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Popular Shells Near You</h2>
@@ -213,10 +219,9 @@
         <p class="text-sm font-semibold">4.5 clams/night</p>
       </div>
     </a>
-
   </div>
 </section>
-<section class="flex flex-col gap-8 rounded-2xl bg-white p-10 shadow-sm border border-stone-200">
+<section class="flex flex-col gap-8 rounded-2xl bg-white p-6 sm:p-10 shadow-sm border border-stone-200">
 <h2 class="text-center text-stone-800 text-3xl font-bold leading-tight tracking-tight">How It Works</h2>
 <div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
 <div class="flex flex-col items-center gap-4">
@@ -242,53 +247,73 @@
 </div>
 </div>
 </section>
-<section class="flex flex-col gap-6 rounded-2xl border border-stone-200 bg-white p-10 shadow-sm">
+<section class="flex flex-col gap-6 rounded-2xl border border-stone-200 bg-white p-10 shadow-sm" id="faq">
   <h2 class="text-center text-3xl font-bold tracking-tight text-stone-800">FAQs</h2>
+  <div class="mx-auto w-full max-w-md">
+    <input id="faq-search" type="text" placeholder="Search questions..." class="w-full rounded-full border border-stone-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-500)]"/>
+  </div>
   <div class="flex flex-col gap-4">
-    <details class="group/faq rounded-lg border">
+    <details class="group/faq rounded-lg border" data-faq-parent>
       <summary class="flex cursor-pointer items-center justify-between p-4 font-semibold text-stone-800">
         Booking
         <span class="material-symbols-outlined transition-transform group-open/faq:rotate-180">expand_more</span>
       </summary>
       <div class="space-y-3 border-t p-4 pl-8">
-        <details class="group/faq-child">
+        <details class="group/faq-child" data-faq-item>
           <summary class="flex cursor-pointer items-center justify-between">
-            <span class="text-stone-700">Lorem ipsum dolor sit amet?</span>
+            <span class="text-stone-700">How do I reserve a shell?</span>
             <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
           </summary>
-          <p class="mt-2 pl-4 text-sm text-stone-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Just search your destination, choose a cozy spot, and tap “Book My Shell.” We’ll take care of the rest.</p>
         </details>
-        <details class="group/faq-child">
+        <details class="group/faq-child" data-faq-item>
           <summary class="flex cursor-pointer items-center justify-between">
-            <span class="text-stone-700">Suspendisse potenti?</span>
+            <span class="text-stone-700">Do I need to leave a deposit?</span>
             <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
           </summary>
-          <p class="mt-2 pl-4 text-sm text-stone-500">Quisque sollicitudin, lorem in aliquet convallis, mauris metus.</p>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Some hosts request a clam deposit. You’ll see this before checkout — no surprises.</p>
+        </details>
+        <details class="group/faq-child" data-faq-item>
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="text-stone-700">Can I cancel my booking?</span>
+            <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Yes! Most shells offer free cancellation up to 24 hours before your stay begins.</p>
         </details>
       </div>
     </details>
-    <details class="group/faq rounded-lg border">
+    <details class="group/faq rounded-lg border" data-faq-parent>
       <summary class="flex cursor-pointer items-center justify-between p-4 font-semibold text-stone-800">
         Stays
         <span class="material-symbols-outlined transition-transform group-open/faq:rotate-180">expand_more</span>
       </summary>
       <div class="space-y-3 border-t p-4 pl-8">
-        <details class="group/faq-child">
+        <details class="group/faq-child" data-faq-item>
           <summary class="flex cursor-pointer items-center justify-between">
-            <span class="text-stone-700">Curabitur euismod elit?</span>
+            <span class="text-stone-700">Are hosts usually on-site?</span>
             <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
           </summary>
-          <p class="mt-2 pl-4 text-sm text-stone-500">Pellentesque habitant morbi tristique senectus et netus.</p>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Some are! Others give you full privacy. Each listing notes whether the host is pond-side or remote.</p>
         </details>
-        <details class="group/faq-child">
+        <details class="group/faq-child" data-faq-item>
           <summary class="flex cursor-pointer items-center justify-between">
-            <span class="text-stone-700">Vivamus lacinia odio?</span>
+            <span class="text-stone-700">Can I bring other turtles with me?</span>
             <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
           </summary>
-          <p class="mt-2 pl-4 text-sm text-stone-500">Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Definitely — as long as the listing allows multiple guests. Look for the “Turtle Group Friendly” tag.</p>
+        </details>
+        <details class="group/faq-child" data-faq-item>
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="text-stone-700">Is bedding (like seaweed or moss) provided?</span>
+            <span class="material-symbols-outlined transition-transform group-open/faq-child:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-2 pl-4 text-sm text-stone-500">Most listings include bedding, but double-check the amenities before you book.</p>
         </details>
       </div>
     </details>
+  </div>
+  <div class="mt-8 text-center">
+    <a href="#contact" class="font-semibold text-[var(--primary-600)] hover:underline">Still have questions? Contact us!</a>
   </div>
 </section>
 <section class="flex flex-col gap-6">
@@ -303,7 +328,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"I loved my stay at the Sunny Rock Ledge! The view was amazing, and it was so peaceful. A perfect spot to warm my shell."</p>
+              <p class="italic text-stone-600">&ldquo;I loved my stay at the Sunny Rock Ledge! The view was amazing, and it was so peaceful. A perfect spot to warm my shell.&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3A18vGiv2Q27bgoGt3dxaBUWYhvmzmHyGU9RPIRy5CUrf6g9kRWRG5cu3kw4yNoXY9SeAiUsSB9_N3_tFyLxgX-HdHXSlSJph_uDq8tgjbImsK7cu8GXWWmUEb_LKsd7upovqparc1DGfF-aovs1JPKTXYtcln5Ll2OD44fsbHgF3vHfOCSSdv1UjLzTpxL-oDEyrhuStxjL3KcMoO2_Sp2hV0i7icXu8M8p42j42vxUkoQEYeVM7LDgFjwwYZPL-tQlIiLLR7Ac"/>
                 <div>
@@ -318,7 +344,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"The Shaded Log Retreat was perfect for a relaxing getaway. Cool, comfy, and away from the hustle. Highly recommend!"</p>
+              <p class="italic text-stone-600">&ldquo;The Shaded Log Retreat was perfect for a relaxing getaway. Cool, comfy, and away from the hustle. Highly recommend!&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKVVyDdkD1ebFuMYKwPBKEA_EvfBsZ93IHl_uK7YLCvTiwYCjcDRqrpNQ2Heiak5ALsq1th1g6X38agwCzqOEtnooaHK7ciqzqUUN3QEllQ55KgG91fJiy95vtlUUj5oBts7iR1HYQeOk33bwPAyAsIDnpAGQEaEwa8IAwSbUH50pMTE34uCpwzNjcDtOXyVKQkoKE92lauoK3qX4u6dz12y39bm9Qv2D3CA_9AKt1skbHd8J-pJro5OE2J0DHgOZvyQNLlS_jd5I"/>
                 <div>
@@ -333,7 +360,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"My pond-side stay was splendid! Plenty of lily pads and a calm atmosphere."</p>
+              <p class="italic text-stone-600">&ldquo;My pond-side stay was splendid! Plenty of lily pads and a calm atmosphere. I’ve never slept so well.&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPVBrfzjG4UEqWMp9mEMT6eOSi-6zTH_Jxq4Mdx-VWqOx6Q0PX4M5KDGmsTdG9iIyRrRZPxOtB1jVJ5Hk7CgB-xA"/>
                 <div>
@@ -348,7 +376,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"Cozy under-shell experience! Will definitely come back during my next migration."</p>
+              <p class="italic text-stone-600">&ldquo;Cozy under-shell experience! Will definitely come back during my next migration.&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzOD20l9X1T3DFdGq_mR1nRtZeAJVMNNfdUHzWlDSPNqpOqZvDInxwJb9zz7Nnyw4qwS3Ng1Yw6PsPXOfcPCv2Po"/>
                 <div>
@@ -363,7 +392,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"Loved the Coral Cove! Great neighbors and plenty of sun."</p>
+              <p class="italic text-stone-600">&ldquo;Coral Cove Hideaway was totally chill. Awesome currents, sweet coral, and good vibes all around.&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1528821154947-1aa3d1d40e40?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -378,7 +408,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"The ocean breeze at Shell Shore was perfect for my yoga sessions."</p>
+              <p class="italic text-stone-600">&ldquo;The ocean breeze at Shell Shore was perfect for my yoga sessions.&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1533569724892-8b97c93fa631?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -393,7 +424,8 @@
           <div class="relative max-w-sm rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <div class="absolute -top-5 -left-3 text-8xl text-stone-100">“</div>
             <div class="relative z-10 flex flex-col gap-4">
-              <p class="text-stone-600">"Great service and clean sand at the Beach Hut. I'll be back!"</p>
+              <p class="italic text-stone-600">&ldquo;Great service and clean sand at the Beach Hut. I'll be back!&rdquo;</p>
+              <div class="text-lg">🐚🐚🐚🐚🐚</div>
               <div class="flex items-center gap-3">
                 <img class="h-12 w-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=64&q=80"/>
                 <div>
@@ -406,8 +438,8 @@
         </div>
         <div class="swiper-slide flex items-center justify-center">
           <div class="relative max-w-sm flex flex-col items-center gap-4 rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
-            <p class="font-bold text-stone-800">Write your own testimonial</p>
-            <button class="rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white hover:bg-[var(--primary-600)]">Share Experience</button>
+            <p class="font-bold text-stone-800">Had a cozy stay? Share your shell story!</p>
+            <button class="rounded-full bg-[var(--primary-500)] px-4 py-2 font-bold text-white hover:bg-[var(--primary-600)]">Write a Testimonial</button>
           </div>
         </div>
       </div>
@@ -416,22 +448,56 @@
     </div>
   </div>
 </section>
-<footer class="rounded-2xl bg-stone-800 p-10 text-center text-white">
-<div class="flex flex-col items-center gap-4">
-<h2 class="max-w-lg text-3xl font-bold leading-tight">Have an extra rock or shady patch? Host with Shellbnb.</h2>
-<p class="max-w-2xl text-stone-300">Join our community of hosts and help fellow turtles find their perfect temporary shell.</p>
-<div class="mt-4 flex flex-col gap-4 sm:flex-row">
-<button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[var(--primary-500)] text-white text-base font-bold leading-normal tracking-wide hover:bg-[var(--primary-600)] transition-colors">
-<span class="truncate">Become a Host</span>
-</button>
-<button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-white/10 text-white text-base font-bold leading-normal tracking-wide hover:bg-white/20 transition-colors">
-<span class="truncate">Explore Listings</span>
-</button>
-</div>
-</div>
-</footer>
 </div>
 </main>
+<footer class="rounded-t-2xl bg-[#f9f8f6] text-[#333] mt-16">
+  <div class="mx-auto max-w-7xl px-6 py-12">
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+      <div>
+        <h3 class="mb-4 font-semibold uppercase tracking-wider">Explore Shellbnb</h3>
+        <ul class="space-y-2">
+          <li>🐚 <a href="#" class="hover:underline">About Us</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Shellbnb Blog</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Careers</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Press</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Reef &amp; Pond Guidelines</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 font-semibold uppercase tracking-wider">Hosting</h3>
+        <ul class="space-y-2">
+          <li>🐚 <a href="#" class="hover:underline">Become a Host</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Hosting Tips</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Turtle Safety Standards</a></li>
+          <li>🐚 <a href="#" class="hover:underline">SuperShell Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 font-semibold uppercase tracking-wider">Support</h3>
+        <ul class="space-y-2">
+          <li>🐚 <a href="#" class="hover:underline">Help Center</a></li>
+          <li>🐚 <a href="#" class="hover:underline">FAQs</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Contact Us</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Cancellation Options</a></li>
+          <li>🐚 <a href="#" class="hover:underline">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 font-semibold uppercase tracking-wider">Social &amp; Legal</h3>
+        <ul class="space-y-2">
+          <li>🌊 <a href="#" class="hover:underline">Instagram</a></li>
+          <li>🐢 <a href="#" class="hover:underline">Threads</a></li>
+          <li>📘 <a href="#" class="hover:underline">Facebook</a></li>
+          <li><a href="#" class="hover:underline">Terms of Service</a></li>
+          <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bg-[#e7e6e3] px-6 py-4 text-center text-sm">
+    <p>🐚 Shellbnb: Every turtle deserves a retreat. Cozy stays, calm waters, and soft landings – wherever your shell takes you.</p>
+  </div>
+</footer>
 </div>
 </div>
 <script>
@@ -554,7 +620,7 @@
     loop: true,
     spaceBetween: 24,
     autoplay: {
-      delay: 6000,
+      delay: 8000,
       disableOnInteraction: false,
       pauseOnMouseEnter: true
     },
@@ -569,4 +635,63 @@
     }
   });
 </script>
-</body></html>
+<script>
+  document.querySelectorAll('[data-faq-parent]').forEach((parent) => {
+    const items = parent.querySelectorAll('[data-faq-item]');
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          items.forEach((other) => {
+            if (other !== item) other.removeAttribute('open');
+          });
+        }
+      });
+    });
+  });
+
+  const search = document.getElementById('faq-search');
+  if (search) {
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase();
+      document.querySelectorAll('[data-faq-item]').forEach((item) => {
+        const text = item.querySelector('summary span').textContent.toLowerCase();
+        const ans = item.querySelector('p').textContent.toLowerCase();
+        if (text.includes(q) || ans.includes(q)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  }
+  </script>
+  <script>
+    document.querySelectorAll('.heart-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isFavorited = btn.classList.toggle('favorited');
+        btn.innerText = isFavorited ? '❤️' : '🤍';
+        btn.setAttribute('aria-label', isFavorited ? 'Remove from favorites' : 'Save to favorites');
+        const listingId = btn.closest('.card')?.dataset.id;
+        if (listingId) {
+          const saved = JSON.parse(localStorage.getItem('favorites') || '[]');
+          const updated = isFavorited
+            ? [...new Set([...saved, listingId])]
+            : saved.filter(id => id !== listingId);
+          localStorage.setItem('favorites', JSON.stringify(updated));
+        }
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = JSON.parse(localStorage.getItem('favorites') || '[]');
+      saved.forEach(id => {
+        const btn = document.querySelector(`.card[data-id="${id}"] .heart-btn`);
+        if (btn) {
+          btn.classList.add('favorited');
+          btn.innerText = '❤️';
+          btn.setAttribute('aria-label', 'Remove from favorites');
+        }
+      });
+    });
+  </script>
+  </body></html>
