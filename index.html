@@ -28,6 +28,7 @@
 </head>
 <body class="bg-[#fcfdfb]">
 <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+<canvas id="cursor-canvas" class="pointer-events-none absolute inset-0 -z-10"></canvas>
 <div class="layout-container flex h-full grow flex-col">
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f2f4f0] px-10 py-4 shadow-sm">
 <div class="flex items-center gap-3 text-green-900">
@@ -253,5 +254,113 @@
 </main>
 </div>
 </div>
+<script>
+(function () {
+  const canvas = document.getElementById('cursor-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height, cols, rows;
+  const spacing = 80;
+  const mouse = { x: 0, y: 0 };
+  const trail = [];
+  let points = [];
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    cols = Math.floor(width / spacing) + 1;
+    rows = Math.floor(height / spacing) + 1;
+    points = [];
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: x * spacing,
+          y: y * spacing,
+          ox: x * spacing,
+          oy: y * spacing,
+          vx: 0,
+          vy: 0,
+        });
+      }
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    trail.push({ x: mouse.x, y: mouse.y, a: 1 });
+  });
+
+  function update() {
+    for (const p of points) {
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        const force = (1 - dist / 120) * 0.1;
+        p.vx += dx * force;
+        p.vy += dy * force;
+      }
+      p.vx += (p.ox - p.x) * 0.02;
+      p.vy += (p.oy - p.y) * 0.02;
+      p.vx *= 0.9;
+      p.vy *= 0.9;
+      p.x += p.vx;
+      p.y += p.vy;
+    }
+    for (const t of trail) {
+      t.a -= 0.02;
+    }
+    while (trail.length && trail[0].a <= 0) trail.shift();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = 'rgba(200,0,0,0.5)';
+    ctx.lineWidth = 1;
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const idx = y * cols + x;
+        const p = points[idx];
+        if (x < cols - 1) {
+          const p2 = points[idx + 1];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+        if (y < rows - 1) {
+          const p2 = points[idx + cols];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    for (let i = 1; i < trail.length; i++) {
+      const p0 = trail[i - 1];
+      const p1 = trail[i];
+      ctx.strokeStyle = `rgba(200,0,0,${p1.a})`;
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.stroke();
+    }
+  }
+
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  resize();
+  loop();
+})();
+</script>
 
 </body></html>
