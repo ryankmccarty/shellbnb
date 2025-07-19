@@ -65,6 +65,18 @@
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 32px;
       }
+      .listings-carousel {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .listings-carousel .swiper-slide {
+        width: auto;
+        padding: 0 8px;
+      }
+      .listings-pagination {
+        text-align: center;
+        margin-top: 1rem;
+      }
       .card {
         padding: 16px 20px;
       }
@@ -137,11 +149,10 @@
       .postcard:hover .shell-rating span { animation:wobble 0.6s ease-in-out; }
       @keyframes wobble {0%,100%{transform:rotate(0);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);} }
 
-      @media (max-width: 640px) {
-        .category-nav { gap: 1rem; }
-        .listings-grid { grid-template-columns: 1fr; gap: 24px; }
-        .card { padding: 12px 16px; }
-      }
+        @media (max-width: 640px) {
+          .category-nav { gap: 1rem; }
+          .card { padding: 12px 16px; }
+        }
 
       .hamburger-line {
         width: 100%;
@@ -271,11 +282,13 @@
     </button>
   </nav>
 </section>
-<section class="flex flex-col gap-6">
-  <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Popular Shells Near You</h2>
-  <div class="listings-grid">
+  <section class="flex flex-col gap-6">
+    <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Popular Shells Near You</h2>
+    <div class="listings-carousel swiper px-[10px]">
+      <div class="swiper-wrapper">
 
-    <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div class="swiper-slide">
+        <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
         <img class="card-img transition-transform group-hover:scale-105" loading="lazy" alt="Sunny Rock Ledge turtle retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEGf7jNkYZ-wk4vdQtc2BRbP2we0VZx4sIUhKZY0uo7MmFFrIzJ8iWaWhrg7eCYsEZD669rfqIvPY67A96Nt9qAyvzfvLkuHO4RmHlbMrGK0KurVjlbXen-u2hfxaFSaM8mbXSXBoVqnGxSVKJhLkI089hHTGnJOfwwlvRxwP2jHjHT4Xnh5r9uVk8JMEwm-fTlTtWrDBWghruHRbkkLzBdDpypc-PnIChVKQeA11fjtOJ3PY9LrvhbBiLLFsnxwRHFeSptJjIx_U" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <span class="supershell-badge">SuperShell 🐢</span>
@@ -292,9 +305,11 @@
         </div>
         <p class="text-sm font-semibold">4 clams/night</p>
       </div>
-    </a>
+        </a>
+      </div>
 
-    <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div class="swiper-slide">
+        <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
         <img class="card-img transition-transform group-hover:scale-105" loading="lazy" alt="Shaded Log Retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Fgh6keGK9XgMqk6gF1PwN5v62DY1B-If953XrOw-MjIhacR5vifMvWABd4-7cUKIskJu0SVt1moPO590SpiMsoDSgjtvvn5oPHEDx6iDREV2mypYCWw1HJI6zISQDYanCvl6WgQgerca4ExmoIh9anQJSLHfXjvcqJSEyubcZF1_Lzk89rvxWIs7_qZw5mcogqCVhMNZek56cVPt2HzN7mEGRKcvAhMX8PC9eryJ4Kt5ieaV85mRtSeJ9jf84lSoCmmGVjD_UtQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
@@ -310,9 +325,11 @@
         </div>
         <p class="text-sm font-semibold">3 clams/night</p>
       </div>
-    </a>
+        </a>
+      </div>
 
-    <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div class="swiper-slide">
+        <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
         <img class="card-img transition-transform group-hover:scale-105" loading="lazy" alt="Private Sandy Nest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhV90Nw61RvZIoGC7eDVCxmkJQeflYxLCjjM8Jgjg9o1djuJgVyBbxZFV6gWnQEXG8dg2P36sQVhMlSGTV98O7p38z9eAwvVqBAvYbzbh4My6BdGrKp7xNfqy0JLLtO6ZVaIe9oXU3D1LunkxRNSyIMqRWh4PHP8mPe51JfKjJ4I2PouvP1nVQMAzFLl4rO8YJiVZffFhmvethcsfkvW6nALwVR4-2bsWZHeDQL2q0WGY1y-kb-1LX3bKCpGqYvr4Qz2z-8VktkfQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
@@ -328,9 +345,11 @@
         </div>
         <p class="text-sm font-semibold">3.5 clams/night</p>
       </div>
-    </a>
+        </a>
+      </div>
 
-    <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div class="swiper-slide">
+        <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
         <img class="card-img transition-transform group-hover:scale-105" loading="lazy" alt="Lily Pad Lookout" src="https://images.unsplash.com/photo-1622268002940-4a58833ec8f7??auto=format&fit=crop&w=640&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
@@ -346,9 +365,11 @@
         </div>
         <p class="text-sm font-semibold">4 clams/night</p>
       </div>
-    </a>
+        </a>
+      </div>
 
-    <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div class="swiper-slide">
+        <a href="#" class="card group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
         <img class="card-img transition-transform group-hover:scale-105" loading="lazy" alt="Coral Cove Hideaway" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
@@ -364,8 +385,11 @@
         </div>
         <p class="text-sm font-semibold">4.5 clams/night</p>
       </div>
-    </a>
-  </div>
+        </a>
+      </div>
+      </div>
+      <div class="listings-pagination mt-4"></div>
+    </div>
 </section>
 <section class="flex flex-col gap-8 rounded-2xl bg-white p-6 sm:p-10 shadow-sm border border-stone-200">
 <h2 class="text-center text-stone-800 text-3xl font-bold leading-tight tracking-tight">How It Works</h2>
@@ -1029,6 +1053,19 @@
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1280: { slidesPerView: 4 }
+    }
+  });
+  new Swiper('.listings-carousel', {
+    loop: true,
+    spaceBetween: 16,
+    pagination: {
+      el: '.listings-pagination',
+      clickable: true
     },
     breakpoints: {
       640: { slidesPerView: 2 },
