@@ -138,7 +138,9 @@
       @keyframes wobble {0%,100%{transform:rotate(0);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);} }
 
       @media (max-width: 640px) {
-        .category-nav { gap: 1rem; }
+        .hero-section { padding: 1rem; }
+        .search-bar > * { width: 100%; }
+        .category-nav { gap: 0.75rem; padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
         .listings-grid { grid-template-columns: 1fr; gap: 24px; }
         .card { padding: 12px 16px; }
       }
@@ -209,7 +211,7 @@
 </header>
 <main class="flex flex-1 justify-center py-10 px-[10px] sm:px-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
-<section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
+<section class="hero-section relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
   <h1 class="mt-8 text-center text-4xl font-bold text-black sm:mt-16 sm:text-6xl" style="font-family:'Inter',sans-serif">Find Your Perfect Shell Away From Home</h1>
   <p class="mt-4 max-w-[650px] text-center text-lg text-stone-600 sm:text-xl" style="font-family:'Inter',sans-serif">Whether you're migrating or just napping, discover your next cozy retreat.</p>
   <form class="search-bar mt-8 flex w-full max-w-[900px] flex-col sm:flex-row flex-wrap items-center justify-between gap-3 rounded-full bg-white p-4 shadow" action="#" method="get">
