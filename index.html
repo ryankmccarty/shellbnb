@@ -830,8 +830,8 @@
   window.addEventListener('load', resize);
   window.addEventListener('resize', resize);
   window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    mouse.x = e.clientX + window.scrollX;
+    mouse.y = e.clientY + window.scrollY;
     trail.push({ x: mouse.x, y: mouse.y, a: 1 });
   });
 
