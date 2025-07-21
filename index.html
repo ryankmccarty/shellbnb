@@ -143,28 +143,6 @@
         .card { padding: 12px 16px; }
       }
 
-      .hamburger-line {
-        width: 100%;
-        height: 2px;
-        background: currentColor;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-      .hamburger.open .hamburger-line:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-      }
-      .hamburger.open .hamburger-line:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger.open .hamburger-line:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
-      }
-      .hamburger.open {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 50;
-      }
-
     </style>
 </head>
 <body class="bg-[#fcfdfb]">
@@ -192,12 +170,10 @@
 <h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-stone-800">Shellbnb</h2>
 </div>
 <div class="relative flex flex-1 items-center justify-end">
-<button id="nav-toggle" class="hamburger text-stone-600 md:hidden flex flex-col justify-between w-8 h-8">
-  <span class="hamburger-line"></span>
-  <span class="hamburger-line"></span>
-  <span class="hamburger-line"></span>
+<button id="nav-toggle" class="text-stone-600 md:hidden">
+<span class="material-symbols-outlined text-3xl">menu</span>
 </button>
-<nav id="nav-menu" class="fixed inset-0 z-40 hidden flex-col items-center justify-center gap-6 bg-white md:static md:flex md:w-auto md:flex-row md:items-center md:gap-6 md:bg-transparent md:p-0 md:shadow-none">
+<nav id="nav-menu" class="absolute left-0 top-full z-10 hidden w-full flex-col gap-4 bg-white p-4 shadow-md md:static md:flex md:w-auto md:flex-row md:items-center md:gap-6 md:bg-transparent md:p-0 md:shadow-none">
 <a class="text-stone-600 hover:text-stone-900 text-sm font-medium leading-normal" href="#">Explore</a>
 <a class="text-stone-600 hover:text-stone-900 text-sm font-medium leading-normal" href="#">About</a>
 <a class="text-stone-600 hover:text-stone-900 text-sm font-medium leading-normal" href="#">Help</a>
@@ -998,14 +974,7 @@
 
 <script>
   document.getElementById('nav-toggle').addEventListener('click', function () {
-    this.classList.toggle('open');
-    document.getElementById('nav-menu').classList.toggle('hidden');
-  });
-  document.querySelectorAll('#nav-menu a').forEach((link) => {
-    link.addEventListener('click', () => {
-      document.getElementById('nav-menu').classList.add('hidden');
-      document.getElementById('nav-toggle').classList.remove('open');
-    });
+  document.getElementById('nav-menu').classList.toggle('hidden');
   });
 </script>
 <script>
