@@ -106,6 +106,20 @@
         z-index: 30;
         transition: transform 0.1s linear;
       }
+      .speech-bubble {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+        margin-left: 0.5rem;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        pointer-events: none;
+      }
       .postcard { transition: transform 0.3s, box-shadow 0.3s; }
       .postcard:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
       .location-stamp { position:absolute; top:0.5rem; right:0.5rem; background:#dffce3; color:#216315; padding:2px 6px; border-radius:4px; font-size:0.75rem; }
@@ -130,6 +144,7 @@
     <ellipse cx="14" cy="26" rx="4" ry="2" fill="#89c35c"/>
     <ellipse cx="34" cy="26" rx="4" ry="2" fill="#89c35c"/>
   </svg>
+  <div id="speech-bubble" class="speech-bubble hidden"></div>
 </div>
 <div class="layout-container flex h-full grow flex-col">
 <header class="border-b border-solid border-b-[#f2f4f0] py-4 shadow-sm">
@@ -1147,9 +1162,17 @@
     });
   </script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const turtle = document.getElementById('mascot-container');
-      if (!turtle) return;
+      document.addEventListener('DOMContentLoaded', () => {
+        const turtle = document.getElementById('mascot-container');
+        const bubble = document.getElementById('speech-bubble');
+        const messages = [
+          'Ready for an adventure?',
+          'Slow and steady!',
+          'I love seaside views!',
+          'Take me for a walk!'
+        ];
+        let bubbleTimeout;
+        if (!turtle) return;
 
       let x = 100;
       let y = 100;
@@ -1178,6 +1201,13 @@
         const p = e.touches ? e.touches[0] : e;
         offX = p.clientX - x;
         offY = p.clientY - y;
+        if (bubble) {
+          const msg = messages[Math.floor(Math.random() * messages.length)];
+          bubble.textContent = msg;
+          bubble.classList.remove('hidden');
+          clearTimeout(bubbleTimeout);
+          bubbleTimeout = setTimeout(() => bubble.classList.add('hidden'), 2000);
+        }
         e.preventDefault();
       };
 
@@ -1191,6 +1221,7 @@
         if (!dragging) return;
         dragging = false;
         turtle.style.cursor = 'grab';
+        if (bubble) bubble.classList.add('hidden');
       };
 
       turtle.addEventListener('mousedown', start);
