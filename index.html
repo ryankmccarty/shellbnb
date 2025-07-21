@@ -666,8 +666,94 @@
   let logs = [];
   let tidePools = [];
   let signIndices = [];
+  let signNames = [];
   let rockIndices = [];
   let meadowIndices = [];
+  let footprints = [];
+  let perlin;
+
+  // basic 2D Perlin noise implementation
+  class PerlinNoise {
+    constructor(seed = 0) {
+      this.p = new Uint8Array(512);
+      const perm = new Uint8Array(256);
+      for (let i = 0; i < 256; i++) perm[i] = i;
+      let s = seed * 65536;
+      const rand = () => {
+        s = (s * 16807) % 2147483647;
+        return (s - 1) / 2147483646;
+      };
+      for (let i = 255; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [perm[i], perm[j]] = [perm[j], perm[i]];
+      }
+      for (let i = 0; i < 512; i++) this.p[i] = perm[i & 255];
+    }
+    grad(hash, x, y) {
+      const h = hash & 3;
+      const u = h < 2 ? x : y;
+      const v = h < 2 ? y : x;
+      return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+    }
+    fade(t) {
+      return t * t * t * (t * (t * 6 - 15) + 10);
+    }
+    lerp(a, b, t) {
+      return a + t * (b - a);
+    }
+    noise2D(x, y) {
+      const X = Math.floor(x) & 255;
+      const Y = Math.floor(y) & 255;
+      x -= Math.floor(x);
+      y -= Math.floor(y);
+      const u = this.fade(x);
+      const v = this.fade(y);
+      const A = this.p[X] + Y;
+      const AA = this.p[A];
+      const AB = this.p[A + 1];
+      const B = this.p[X + 1] + Y;
+      const BA = this.p[B];
+      const BB = this.p[B + 1];
+      const res = this.lerp(
+        this.lerp(this.grad(this.p[AA], x, y), this.grad(this.p[BA], x - 1, y), u),
+        this.lerp(this.grad(this.p[AB], x, y - 1), this.grad(this.p[BB], x - 1, y - 1), u),
+        v
+      );
+      return (res + 1) / 2;
+    }
+  }
+
+  function dist(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  function poissonDisc(count, minDist) {
+    const picks = [];
+    let attempts = 0;
+    while (picks.length < count && attempts < count * 20) {
+      const idx = Math.floor(Math.random() * points.length);
+      const pt = points[idx];
+      if (picks.every((p) => dist(points[p], pt) > minDist)) {
+        picks.push(idx);
+      }
+      attempts++;
+    }
+    return picks;
+  }
+
+  function midpointSpline(pts) {
+    if (pts.length < 2) return [];
+    const res = [pts[0]];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i];
+      const p1 = pts[i + 1];
+      res.push({ x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2 });
+    }
+    res.push(pts[pts.length - 1]);
+    return res;
+  }
 
 
   function resize() {
@@ -688,16 +774,18 @@
         });
       }
     }
-    treeIndices = [];
-    for (let i = 0; i < 250; i++) {
-      treeIndices.push(Math.floor(Math.random() * points.length));
-    }
+
+    perlin = new PerlinNoise(Math.random());
+
+    treeIndices = poissonDisc(250, spacing * 0.7);
 
     riverIndices = [];
-    for (let y = 0; y < rows; y++) {
-      const colOffset = Math.floor(Math.sin(y / 3) * 2);
-      const col = Math.floor(cols / 2) + colOffset;
-      riverIndices.push(y * cols + Math.min(Math.max(col, 0), cols - 1));
+    let xPos = cols / 2;
+    for (let r = 0; r < rows; r++) {
+      const n = perlin.noise2D(r * 0.1, 0) - 0.5;
+      xPos += n * 1.5;
+      const col = Math.floor(xPos);
+      riverIndices.push(r * cols + Math.min(Math.max(col, 0), cols - 1));
     }
 
     streamPaths = [];
@@ -705,36 +793,39 @@
       const path = [];
       for (let s = 0; s < 8; s++) {
         const row = i * Math.floor(rows / 3) + s;
-        const col = Math.floor(cols / 2) + 2 + Math.floor(Math.sin(s / 2) * 2);
+        const col = Math.floor(xPos) + 2 + Math.floor(Math.sin(s / 2) * 2);
         if (row < rows && col < cols) path.push(row * cols + col);
       }
       streamPaths.push(path);
     }
 
-    lilyPads = [];
-    riverIndices.forEach((idx) => {
-      if (Math.random() < 0.15) lilyPads.push(idx);
-    });
+    lilyPads = poissonDisc(40, spacing * 0.5);
 
-    logs = [];
-    for (let i = 0; i < 8; i++) {
-      const idx = riverIndices[Math.floor(Math.random() * riverIndices.length)];
-      logs.push({ idx, angle: (Math.random() - 0.5) * Math.PI });
-    }
+    logs = poissonDisc(8, spacing);
+    logs = logs.map((idx) => ({ idx, angle: (Math.random() - 0.5) * Math.PI }));
 
-    tidePools = [];
-    for (let i = 0; i < 6; i++) {
-      tidePools.push(riverIndices[Math.floor(Math.random() * riverIndices.length)]);
-    }
+    tidePools = poissonDisc(6, spacing);
 
     const trailRows = [Math.floor(rows / 3), Math.floor(rows / 3 * 2)];
     signIndices = trailRows.map((r) => r * cols + Math.floor(Math.random() * cols));
+    const names = ['Cody Nook','Shell Sanctuary','Bay Burrow','Log Lounge'];
+    signNames = signIndices.map(() => names[Math.floor(Math.random() * names.length)]);
 
-    rockIndices = [];
-    for (let i = 0; i < 40; i++) rockIndices.push(Math.floor(Math.random() * points.length));
+    rockIndices = poissonDisc(40, spacing * 0.6);
 
-    meadowIndices = [];
-    for (let i = 0; i < 8; i++) meadowIndices.push(Math.floor(Math.random() * points.length));
+    meadowIndices = poissonDisc(8, spacing * 2);
+
+    footprints = [];
+    const trailPts = riverIndices.map((idx) => ({ x: points[idx].x, y: points[idx].y + spacing * 0.2 }));
+    trailPts.forEach((p) => {
+      if (Math.random() < 0.05) {
+        for (let i = 0; i < 3; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const d = Math.random() * 30;
+          footprints.push({ x: p.x + Math.cos(a) * d, y: p.y + Math.sin(a) * d, a });
+        }
+      }
+    });
   }
   window.addEventListener('load', resize);
   window.addEventListener('resize', resize);
@@ -817,31 +908,28 @@
 
     // sandy trails
     ctx.strokeStyle = '#b58f6b';
-    ctx.setLineDash([10, 6]);
-    for (const row of trailRows) {
-      for (let x = 0; x < cols - 1; x++) {
-        const idx = row * cols + x;
-        const p = points[idx];
-        const p2 = points[idx + 1];
-        ctx.lineWidth = 3 + Math.sin((row + x) * 0.3) * 1; // vary width
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-      }
+    const trailPts = riverIndices.map((idx) => ({ x: points[idx].x, y: points[idx].y + spacing * 0.2 }));
+    const smooth = midpointSpline(trailPts);
+    ctx.setLineDash([8, 4]);
+    ctx.beginPath();
+    ctx.moveTo(smooth[0].x, smooth[0].y);
+    for (let i = 1; i < smooth.length; i++) {
+      ctx.lineTo(smooth[i].x, smooth[i].y);
     }
+    ctx.stroke();
     ctx.setLineDash([]);
 
     // footprints
     ctx.fillStyle = '#b58f6b';
-    for (const row of trailRows) {
-      for (let x = 0; x < cols - 1; x += 3) {
-        const p = points[row * cols + x];
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    footprints.forEach((fp) => {
+      ctx.save();
+      ctx.translate(fp.x, fp.y);
+      ctx.rotate(fp.a);
+      ctx.beginPath();
+      ctx.arc(0, 0, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
 
     // lily pads
     ctx.fillStyle = '#6aaa3b';
@@ -892,10 +980,14 @@
 
     // signs
     ctx.fillStyle = '#b88a54';
-    signIndices.forEach((idx) => {
+    signIndices.forEach((idx, i) => {
       const p = points[idx];
+      const name = signNames[i] || '';
       ctx.fillRect(p.x - 2, p.y - 12, 4, 12);
-      ctx.fillRect(p.x - 8, p.y - 18, 16, 6);
+      ctx.fillRect(p.x - 16, p.y - 20, 32, 8);
+      ctx.fillStyle = '#333';
+      ctx.fillText(name, p.x - ctx.measureText(name).width / 2, p.y - 14);
+      ctx.fillStyle = '#b88a54';
     });
 
     // trees
@@ -908,9 +1000,10 @@
     });
 
     // corner turtles
-    function doodleTurtle(x, y, scale) {
+    function doodleTurtle(x, y, scale, rot) {
       ctx.save();
       ctx.translate(x, y);
+      ctx.rotate(rot);
       ctx.scale(scale, scale);
       ctx.fillStyle = '#68a23f';
       ctx.beginPath();
@@ -927,10 +1020,13 @@
       ctx.restore();
     }
 
-    doodleTurtle(40, 40, 0.7);
-    doodleTurtle(width - 40, 40, 0.7);
-    doodleTurtle(40, height - 40, 0.7);
-    doodleTurtle(width - 40, height - 40, 0.7);
+    const corners = [
+      { x: 40, y: 40, rot: 0.2, scale: 0.6 },
+      { x: width - 40, y: 40, rot: -0.1, scale: 0.8 },
+      { x: 40, y: height - 40, rot: 0, scale: 0.7 },
+      { x: width - 40, y: height - 40, rot: 0.5, scale: 0.65 },
+    ];
+    corners.forEach((c) => doodleTurtle(c.x, c.y, c.scale, c.rot));
     
     // cursor trail remains
     ctx.lineWidth = 2;
