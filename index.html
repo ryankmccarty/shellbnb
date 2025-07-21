@@ -118,7 +118,7 @@
 </head>
 <body class="bg-[#fcfdfb]">
 <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-<canvas id="cursor-canvas" class="pointer-events-none absolute inset-0 -z-10"></canvas>
+<canvas id="cursor-canvas" class="pointer-events-none absolute inset-0 -z-10 opacity-30 sm:opacity-50 lg:opacity-100"></canvas>
 <div id="mascot-container" class="pointer-events-auto absolute left-0 top-0 w-16 h-12" style="cursor:grab">
   <svg id="turtle" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" class="w-full h-full select-none">
     <ellipse cx="24" cy="16" rx="16" ry="12" fill="#68a23f"/>
@@ -159,10 +159,10 @@
 <main class="flex flex-1 justify-center py-10">
 <div class="layout-content-container flex flex-col max-w-screen-2xl flex-1 gap-12">
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-<section class="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
+<section class="relative z-10 mx-auto flex w-full max-w-md sm:max-w-lg md:max-w-screen-md lg:max-w-screen-lg flex-col items-center rounded-2xl bg-white/85 p-6 backdrop-blur-sm sm:p-8">
   <h1 class="mt-8 text-center font-bold text-black sm:mt-16 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style="font-family:'Inter',sans-serif">Find Your Perfect Shell Away From Home</h1>
   <p class="mt-2 max-w-[650px] text-center text-sm sm:text-base md:text-lg text-stone-600" style="font-family:'Inter',sans-serif">Whether you're migrating or just napping, discover your next cozy retreat.</p>
-  <form class="search-bar mt-8 flex w-full max-w-[900px] flex-col sm:flex-row flex-wrap items-center justify-between gap-3 rounded-full bg-white p-4 shadow" action="#" method="get">
+  <form class="search-bar mt-8 flex flex-col items-stretch gap-3 w-full max-w-[900px] sm:flex-row sm:items-center rounded-full bg-white p-4 shadow" action="#" method="get">
     <input aria-label="Where" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="text" placeholder="Search destinations" />
     <input aria-label="Check In" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
     <input aria-label="Check Out" class="w-full sm:flex-1 rounded-full border border-stone-300 px-4 py-2" type="date" placeholder="Add date" />
@@ -225,11 +225,11 @@
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <section class="flex flex-col gap-6">
   <h2 class="text-stone-800 text-3xl font-bold leading-tight tracking-tight">Popular Shells Near You</h2>
-  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-    <a href="#" class="card p-4 sm:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    <a href="#" class="card p-4 sm:p-4 md:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
-        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105" loading="lazy" alt="Sunny Rock Ledge turtle retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEGf7jNkYZ-wk4vdQtc2BRbP2we0VZx4sIUhKZY0uo7MmFFrIzJ8iWaWhrg7eCYsEZD669rfqIvPY67A96Nt9qAyvzfvLkuHO4RmHlbMrGK0KurVjlbXen-u2hfxaFSaM8mbXSXBoVqnGxSVKJhLkI089hHTGnJOfwwlvRxwP2jHjHT4Xnh5r9uVk8JMEwm-fTlTtWrDBWghruHRbkkLzBdDpypc-PnIChVKQeA11fjtOJ3PY9LrvhbBiLLFsnxwRHFeSptJjIx_U" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
+        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105 mb-2 sm:mb-4" loading="lazy" alt="Sunny Rock Ledge turtle retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEGf7jNkYZ-wk4vdQtc2BRbP2we0VZx4sIUhKZY0uo7MmFFrIzJ8iWaWhrg7eCYsEZD669rfqIvPY67A96Nt9qAyvzfvLkuHO4RmHlbMrGK0KurVjlbXen-u2hfxaFSaM8mbXSXBoVqnGxSVKJhLkI089hHTGnJOfwwlvRxwP2jHjHT4Xnh5r9uVk8JMEwm-fTlTtWrDBWghruHRbkkLzBdDpypc-PnIChVKQeA11fjtOJ3PY9LrvhbBiLLFsnxwRHFeSptJjIx_U" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <span class="supershell-badge">SuperShell 🐢</span>
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
           <span class="material-symbols-outlined text-red-500">favorite</span>
@@ -246,9 +246,9 @@
       </div>
     </a>
 
-    <a href="#" class="card p-4 sm:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    <a href="#" class="card p-4 sm:p-4 md:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
-        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105" loading="lazy" alt="Shaded Log Retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Fgh6keGK9XgMqk6gF1PwN5v62DY1B-If953XrOw-MjIhacR5vifMvWABd4-7cUKIskJu0SVt1moPO590SpiMsoDSgjtvvn5oPHEDx6iDREV2mypYCWw1HJI6zISQDYanCvl6WgQgerca4ExmoIh9anQJSLHfXjvcqJSEyubcZF1_Lzk89rvxWIs7_qZw5mcogqCVhMNZek56cVPt2HzN7mEGRKcvAhMX8PC9eryJ4Kt5ieaV85mRtSeJ9jf84lSoCmmGVjD_UtQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
+        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105 mb-2 sm:mb-4" loading="lazy" alt="Shaded Log Retreat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Fgh6keGK9XgMqk6gF1PwN5v62DY1B-If953XrOw-MjIhacR5vifMvWABd4-7cUKIskJu0SVt1moPO590SpiMsoDSgjtvvn5oPHEDx6iDREV2mypYCWw1HJI6zISQDYanCvl6WgQgerca4ExmoIh9anQJSLHfXjvcqJSEyubcZF1_Lzk89rvxWIs7_qZw5mcogqCVhMNZek56cVPt2HzN7mEGRKcvAhMX8PC9eryJ4Kt5ieaV85mRtSeJ9jf84lSoCmmGVjD_UtQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
           <span class="material-symbols-outlined text-red-500">favorite</span>
         </button>
@@ -264,9 +264,9 @@
       </div>
     </a>
 
-    <a href="#" class="card p-4 sm:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    <a href="#" class="card p-4 sm:p-4 md:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
-        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105" loading="lazy" alt="Private Sandy Nest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhV90Nw61RvZIoGC7eDVCxmkJQeflYxLCjjM8Jgjg9o1djuJgVyBbxZFV6gWnQEXG8dg2P36sQVhMlSGTV98O7p38z9eAwvVqBAvYbzbh4My6BdGrKp7xNfqy0JLLtO6ZVaIe9oXU3D1LunkxRNSyIMqRWh4PHP8mPe51JfKjJ4I2PouvP1nVQMAzFLl4rO8YJiVZffFhmvethcsfkvW6nALwVR4-2bsWZHeDQL2q0WGY1y-kb-1LX3bKCpGqYvr4Qz2z-8VktkfQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
+        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105 mb-2 sm:mb-4" loading="lazy" alt="Private Sandy Nest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhV90Nw61RvZIoGC7eDVCxmkJQeflYxLCjjM8Jgjg9o1djuJgVyBbxZFV6gWnQEXG8dg2P36sQVhMlSGTV98O7p38z9eAwvVqBAvYbzbh4My6BdGrKp7xNfqy0JLLtO6ZVaIe9oXU3D1LunkxRNSyIMqRWh4PHP8mPe51JfKjJ4I2PouvP1nVQMAzFLl4rO8YJiVZffFhmvethcsfkvW6nALwVR4-2bsWZHeDQL2q0WGY1y-kb-1LX3bKCpGqYvr4Qz2z-8VktkfQ" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
           <span class="material-symbols-outlined text-red-500">favorite</span>
         </button>
@@ -282,9 +282,9 @@
       </div>
     </a>
 
-    <a href="#" class="card p-4 sm:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    <a href="#" class="card p-4 sm:p-4 md:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
-        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105" loading="lazy" alt="Lily Pad Lookout" src="https://images.unsplash.com/photo-1622268002940-4a58833ec8f7?auto=format&fit=crop&w=640&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
+        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105 mb-2 sm:mb-4" loading="lazy" alt="Lily Pad Lookout" src="https://images.unsplash.com/photo-1622268002940-4a58833ec8f7?auto=format&fit=crop&w=640&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
           <span class="material-symbols-outlined text-red-500">favorite</span>
         </button>
@@ -300,9 +300,9 @@
       </div>
     </a>
 
-    <a href="#" class="card p-4 sm:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    <a href="#" class="card p-4 sm:p-4 md:p-6 lg:p-8 group relative flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <div class="relative">
-        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105" loading="lazy" alt="Coral Cove Hideaway" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
+        <img class="w-full object-cover aspect-[4/3] h-48 sm:h-56 md:h-64 lg:h-72 transition-transform group-hover:scale-105 mb-2 sm:mb-4" loading="lazy" alt="Coral Cove Hideaway" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" onerror="this.src='https://via.placeholder.com/640x480?text=Shellbnb'" />
         <button aria-label="Save to favorites" title="Save to favorites" class="heart-btn">
           <span class="material-symbols-outlined text-red-500">favorite</span>
         </button>
@@ -323,7 +323,7 @@
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <section class="flex flex-col gap-8 rounded-2xl bg-white p-6 sm:p-10 shadow-sm border border-stone-200">
 <h2 class="text-center text-stone-800 text-3xl font-bold leading-tight tracking-tight">How It Works</h2>
-<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
 <div class="flex flex-col items-center gap-4">
 <div class="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary-100)] text-[var(--primary-600)]">
 <img alt="Turtle looking through a spyglass" class="h-12 w-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwzS_1gPd1loQX-6QYcZM0tIOF0MoMVWtZpgEfiH9AqpOetLGMnGm9599EM2qaJBBbRp0f6LWBAiFfPY2Du9HzPuDu2Wx5cKbsS8qX30eqwWf3253hNSduQxW8vbh_5rherCRnOLnRLri6se5KwT1Sd3qJ_ZQKYF4hfc6yrvPh5QC7gIcv1mV2zyyRcBvbXRmqlEOMxRxc_rTzJfFRX_sKDmgT9Aau96f0trgJ5mq5zyMxZYIVQSkHGF4UTEpRhdh8pyh4iWs6aMY"/>
@@ -601,7 +601,7 @@
 </main>
 <footer class="rounded-t-2xl bg-[#f9f8f6] text-[#333] mt-16">
   <div class="mx-auto max-w-7xl px-[10px] py-12 sm:px-6">
-    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
       <div>
         <h3 class="mb-4 font-semibold uppercase tracking-wider">Explore Shellbnb</h3>
         <ul class="space-y-2">
